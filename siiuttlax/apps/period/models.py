@@ -18,3 +18,16 @@ class Period(models.Model):
         verbose_name = 'Periodo'
         verbose_name_plural = 'Periodos'
         ordering = ['year']
+
+
+class Semester(models.Model):
+    semester = models.CharField(max_length=2, verbose_name="Cuatrimestre")
+    semester_name = models.CharField(max_length=10, verbose_name="Cuatrimestre en Letra")
+    short_name = models.CharField(max_length=5, verbose_name="Abreviatura")
+
+    def __str__(self):
+        return f"{ self.semester }"
+
+    class Meta:
+        verbose_name = 'Cuatrimestre'
+        verbose_name_plural = 'Cuatrimestres'

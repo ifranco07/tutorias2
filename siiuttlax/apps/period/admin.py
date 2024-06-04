@@ -1,9 +1,10 @@
 from django.contrib import admin
-from django.db import models
 
-from .models import Period
+from .models import Period, Semester
 
 # Register your models here.
 @admin.register(Period)
 class PeriodAdmin(admin.ModelAdmin):
-    list_display = ['period', 'year', 'cycle']
+    list_display = ['year', 'period', 'cycle']
+
+admin.site.register(Semester)
