@@ -10,6 +10,7 @@ class Period(models.Model):
     period = models.CharField(max_length=22, choices=MONTHS_PERIOD, verbose_name='Periodo')
     year = models.IntegerField(verbose_name='Año', default=2024)
     cycle = models.CharField(max_length=20, verbose_name='Ciclo', default='2024-2025')
+    status = models.BooleanField(verbose_name='Estado', default=False)
 
     def __str__(self):
         return f'{ self.period } { self.year }'
@@ -17,7 +18,7 @@ class Period(models.Model):
     class Meta:
         verbose_name = 'Periodo'
         verbose_name_plural = 'Periodos'
-        ordering = ['year']
+        ordering = ['id']
 
 
 class Semester(models.Model):
@@ -26,8 +27,9 @@ class Semester(models.Model):
     short_name = models.CharField(max_length=5, verbose_name="Abreviatura")
 
     def __str__(self):
-        return f"{ self.semester }"
+        return f"{ self.semester_name }"
 
     class Meta:
         verbose_name = 'Cuatrimestre'
         verbose_name_plural = 'Cuatrimestres'
+        ordering = ['id']

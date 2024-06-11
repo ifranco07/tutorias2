@@ -5,6 +5,9 @@ from .models import Period, Semester
 # Register your models here.
 @admin.register(Period)
 class PeriodAdmin(admin.ModelAdmin):
-    list_display = ['year', 'period', 'cycle']
+    list_display = ['year', 'period', 'cycle', 'status']
+    list_editable = ['status']
 
-admin.site.register(Semester)
+@admin.register(Semester)
+class SemesterAdmin(admin.ModelAdmin):
+    list_display = ['semester_name']

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'apps.period.apps.PeriodConfig',
     #'apps.hourly_load.apps.HourlyLoadConfig',
     'apps.group.apps.GroupConfig',
+    'apps.academy.apps.AcademyConfig',
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
