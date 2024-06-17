@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     #'apps.hourly_load.apps.HourlyLoadConfig',
     'apps.group.apps.GroupConfig',
     'apps.academy.apps.AcademyConfig',
+    'apps.reporte_tutoria.apps.ReporteTutoriaConfig',
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
