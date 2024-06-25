@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REPORTE DE TUTORIAS</title>
+    <link rel="stylesheet" href="/siiuttlax/static/css/styles.css">
+</head>
+<body>
+    <div class="hoja">
+        <header>
+            <img src="/siiuttlax/static/img/Encabezado.jpg" alt="Encabezado">
+        </header>
+        
+        <div class="encabezado">
+            <h1>REPORTE DE TUTORIA</h1>
+            <br>
+
+            <p>Fecha de Tutoria:</p>
+            <input type="date" value="{{ reporte.fecha }}" readonly>
+
+            <p>Carrera:</p>
+            <input type="text" value="{{ reporte.carrera }}" readonly>
+
+            <p>Grado:</p>
+            <input type="text" value="{{ reporte.grado }}" readonly>
+
+            <p>Grupo:</p>
+            <input type="text" value="{{ reporte.grupo }}" readonly>
+
+            <br>
+            <p>Nombre de la Actividad:</p>
+            <input type="text">
+
+            <br>
+            <p>Objetivo de la Actividad:</p>
+            <textarea rows="4"></textarea>
+
+            <br>
+            <p>Descripción de la Actividad:</p>
+            <textarea rows="6"></textarea>
+
+            <br>
+            <input type="file" accept=".pdf, .mp3">
+        </div>
+
+        <footer>
+            <img src="/siiuttlax/static/img//Footer.jpg" alt="Pie de página">
+        </footer>
+    </div>
+</body>
+</html>
