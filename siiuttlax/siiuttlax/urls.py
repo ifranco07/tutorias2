@@ -19,8 +19,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
 
     path('seguimiento/',include('apps.seguimiento.urls')),
-]
-
     path('login/', CustomLoginView.as_view(), name='login'),
     path('solicitar/', alumno_view, name='ruta_alumno'),
     path('revisar/', tutor_view, name='ruta_tutor'),
