@@ -32,7 +32,11 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # local Apps
+
+    'apps.seguimiento.apps.SeguimientoConfig',
+
     'apps.justify.apps.JustifyConfig',
+
     'apps.career.apps.CareerConfig',
     'apps.home.apps.HomeConfig',
     'apps.period.apps.PeriodConfig',
