@@ -1,6 +1,13 @@
+
 from django.contrib import admin
 from django.urls import path, include
-from . import views 
+from django.conf import settings
+from django.conf.urls.static import static
+
+# Importaciones de las vistas personalizadas
+from apps.justify.views import CustomLoginView, alumno_view, tutor_view, revisar_justificante_view
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -10,5 +17,11 @@ urlpatterns = [
     path('', include('apps.interview.urls')),
     path('', include('apps.group.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('reporte_tutoria/', views.reporte_tutoria, name='reporte_tutoria'),
+
+    path('reporte/',include('apps.reporte_tutoria.urls')),
+    path('seguimiento/',include('apps.seguimiento.urls')),
+    path('login/', CustomLoginView.as_view(), name='login'),
+    path('solicitar/', alumno_view, name='ruta_alumno'),
+    path('revisar/', tutor_view, name='ruta_tutor'),
+    path('revisar/justificante/<int:justificante_id>/', revisar_justificante_view, name='ruta_para_revisar_justificante'),
 ]
