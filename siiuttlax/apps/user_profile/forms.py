@@ -49,6 +49,7 @@ class ProfileUpdateForm(UserChangeForm):
 
 from django import forms
 from .models import Profile
+from datetime import date
 
 class ProfileForm(forms.ModelForm):
     class Meta:
@@ -56,7 +57,20 @@ class ProfileForm(forms.ModelForm):
         fields = ['biography', 'sexo', 'age', 'fecha_nacimiento', 'lugar_nacimiento', 'direccion', 'celular', 'telefono_emergencia', 'numero_seguro_social', 'tipo_sangre']
         widgets = {
             'fecha_nacimiento': forms.DateInput(attrs={'type': 'date'}),
+             'age': forms.HiddenInput(),  
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        fecha_nacimiento = cleaned_data.get("fecha_nacimiento")
+
+        if fecha_nacimiento:
+            today = date.today()
+            age = today.year - fecha_nacimiento.year - ((today.month, today.day) < (fecha_nacimiento.month, fecha_nacimiento.day))
+            cleaned_data['age'] = age
+
+        return cleaned_data
+
 
 
 

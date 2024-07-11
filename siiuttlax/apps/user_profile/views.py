@@ -77,11 +77,12 @@ def admin_dashboard(request):
     # Verificar si el usuario autenticado es un profesor
     try:
         admin_profile = request.user.admin
+        user_type = 'administrador'
     except Admin.DoesNotExist:
         # Si no es profesor, redirige a la página de inicio
         return render(request, 'profile/error_404.html', {'message': 'No se encontró el perfil asociado al modulo'})
     
-    return render(request, 'home/admin_dbar.html', {'user': request.user, 'admin': admin_profile})
+    return render(request, 'home/admin_dbar.html', {'user': request.user, 'admin': admin_profile ,'user_type': user_type})
 
 def custom_404_view(request, exception):
     return render(request, 'profile/error_404.html', {'message': 'No se encontró el perfil asociado al modulo'})
@@ -158,6 +159,24 @@ def update_perfil(request):
         profile_form = ProfileForm(instance=request.user.profile)
     
     return render(request, 'profile/update_perfil.html', {'profile_form': profile_form})
+
+from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def home(request):
+    user = request.user
+    if hasattr(user, 'student'):
+        return redirect('student_dashboard')
+    elif hasattr(user, 'professor'):
+        return redirect('professor_dashboard')
+    elif hasattr(user, 'admin'):
+        return redirect('admin_dashboard')
+    else:
+        return redirect('pagina_inicial')  # Redirigir a la página inicial si no tiene un perfil específico
+
+
+
 
 
 
