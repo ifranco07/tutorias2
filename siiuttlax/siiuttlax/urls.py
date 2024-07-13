@@ -18,7 +18,7 @@ urlpatterns = [
     path('', include('apps.group.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 
-    path('reporte/',include('apps.reporte_tutoria.urls')),
+    path('reporte_tutoria/',include('apps.reporte_tutoria.urls')),
     path('seguimiento/',include('apps.seguimiento.urls')),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('solicitar/', alumno_view, name='ruta_alumno'),

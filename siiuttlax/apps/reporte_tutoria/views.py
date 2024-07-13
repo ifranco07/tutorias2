@@ -7,11 +7,10 @@ from apps.group.models import Group
 
 def reporte_tutoria(request):
     context = {
-        'reporte': {
-            'fecha': date.today(),  
-            'carrera': Career.objects.all(), 
-            'grado': Semester.objects.all(),  
-            'grupo': Group.objects.all(),
+        'reporte': { 
+            'carreras': Career.objects.all(), 
+            'semestres': Semester.objects.all(),  
+            'grupos': Group.objects.all(),
         }
     }
     return render(request, 'reporte_tutorias/reporte_tutoria.html', context)

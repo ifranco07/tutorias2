@@ -4,32 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>REPORTE DE TUTORIAS</title>
-    <link rel="stylesheet" href="{% static "css/styles.css" %}">
 </head>
 <body>
     <div class="hoja">
         <header>
-            <img src="{% static 'img/Encabezado.jpg'%}" alt="Encabezado">
+            <img src="{% static 'img/Encabezado.jpg' %}" alt="Encabezado">
         </header>
         
         <div class="encabezado">
             <h1>REPORTE DE TUTORIA</h1>
             <br>
 
-            <form method="post" action="/send/">
-            <p>Fecha de Tutoria:</p>
-            <input type="date" value="">
-            </form>
+            <form method="post" action="/send/" enctype="multipart/form-data">
+                {% csrf_token %}
+                <p>Fecha de Tutoria:</p>
+                <input type="date" name="fecha" value="">
 
             <p>Carrera:</p>
-            <input type="text" value="" readonly>
+            <select id="carrera" name="carrera">
+                <option value="">Seleccione una carrera</option>
+                {% for carrera in reporte.carreras %}
+                    <option value="{{ carrera.id }}">{{ carrera.short_name }}</option>
+                {% endfor %}
+            </select>
 
-            <p>Grado:</p>
-            <input type="text" value="" readonly>
+            <p>Semestre:</p>
+            <select name="semestre" id="semestre">
+                <option value="">Selecciona el semestre</option>
+                {% for cuatrimestre in reporte.semestres %}
+                    <option value="{{ cuatrimestre.id }}">{{ cuatrimestre.semester }}</option>
+                {% endfor %}
+            </select>
 
             <p>Grupo:</p>
-            <input type="text" value="" readonly>
+            <select name="grupo" id="grupo">
+                <option value="">Selecciona el grupo</option>
+                {% for grupo in reporte.grupos %}
+                    <option value="{{ grupo.id }}">{{ grupo.group }}</option>
+                {% endfor %}
+            </select>
 
             <br>
             <p>Nombre de la Actividad:</p>
@@ -46,10 +61,12 @@
             <br>
             <p>Evidencias </p>
             <input type="file" accept=".png, .jpg, .jpeg, .mp4">
+            <input type="file" accept=".pdf, .mp3">
 
             <br>
-            <input type="file" accept=".pdf, .mp3">
+            <button type="submit">Enviar</button>
         </div>
+        <br>
 
         <footer>
             <img src="{% static 'img/Footer.jpg'%}" alt="Pie de página">
