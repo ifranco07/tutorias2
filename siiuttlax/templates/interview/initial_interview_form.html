@@ -6,9 +6,30 @@
 {% block content %}
     <div class="form-spacing"></div> 
     <h2>Llenar Entrevista Inicial</h2>
-    <form method="post" class="interview-form">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn-submit">Guardar Entrevista</button>
-    </form>
+
+    {% if not interview_exists %}
+        <!-- Floating Message Container -->
+        <div class="floating-message">
+            <p>Por favor, completa todos los campos de la entrevista inicial. Asegúrate de proporcionar información precisa y detallada.</p>
+        </div>
+        <!-- Script para cerrar el mensaje flotante -->
+        <script>
+            function closeFloatingMessage() {
+                var floatingMessage = document.querySelector('.floating-message');
+                floatingMessage.style.display = 'none';
+            }
+        </script>
+
+        <form method="post" class="interview-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-submit">Guardar Entrevista</button>
+        </form>
+    {% else %}
+        <p>Ya has llenado tu entrevista inicial.</p>
+        <form method="post" class="interview-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+        </form>
+    {% endif %}
 {% endblock %}

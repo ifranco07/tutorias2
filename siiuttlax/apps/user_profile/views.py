@@ -87,13 +87,12 @@ def admin_dashboard(request):
 def custom_404_view(request, exception):
     return render(request, 'profile/error_404.html', {'message': 'No se encontró el perfil asociado al modulo'})
 
-# views.py
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
-from .forms import ProfileUpdateForm  
-from apps.academy.models import Professor, Student  
+from .forms import ProfileUpdateForm
+from apps.academy.models import Professor, Student
 
 @login_required
 def update_profile(request):
@@ -103,7 +102,7 @@ def update_profile(request):
         user_form = ProfileUpdateForm(request.POST, instance=user)
         if user_form.is_valid():
             user = user_form.save()
-            
+
             # Actualizar matrícula si el usuario es un estudiante
             if hasattr(user, 'student'):
                 enrollment = user_form.cleaned_data.get('enrollment')
@@ -125,6 +124,7 @@ def update_profile(request):
         user_form = ProfileUpdateForm(instance=user)
     
     return render(request, 'profile/update_profile.html', {'user_form': user_form})
+
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required

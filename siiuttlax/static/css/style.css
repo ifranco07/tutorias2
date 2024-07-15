@@ -345,3 +345,23 @@ button:hover {
     margin-bottom: 10px;
 }
 
+/* CSS (styles.css) */
+
+/* Estilos para el contenedor del mensaje flotante */
+.floating-message {
+    position: fixed;
+    top: 50%;  /* Centrar verticalmente */
+    left: 50%;  /* Centrar horizontalmente */
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+
+
