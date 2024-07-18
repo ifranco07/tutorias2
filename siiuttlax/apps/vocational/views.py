@@ -16,7 +16,14 @@ def home(request):
 
 @login_required
 def test(request, q_id=1):
-    exam = request.user.exam
+
+    try:  
+        exam = request.user.exam
+    except:
+        exam = Exam.objects.create(
+                user=request.user)
+        exam.set_modules()
+        exam.set_questions()
 
     # Obtener todas las preguntas de todos los módulos
     questions = list(Breakdown.objects.filter(exam=exam))

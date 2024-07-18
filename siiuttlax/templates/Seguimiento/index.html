@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Freeman&family=Lobster&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Principal</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: rgb(218, 218, 218);
+            font-family: "Freeman", sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #333;
+            text-align: center;
+        }
+        .encabezado {
+            background-color: green;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+            font-size: 30px;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .tabla {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 1500px;
+            margin: 20px auto;
+            color: white;
+            font-size: 19px;
+        }
+        th {
+            background-color: darkgreen;
+            border: 2px solid black;
+        }
+        td {
+            background-color: rgb(255, 183, 48);
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="encabezado">
+        <p>Universidad Tecnológica de Tlaxcala</p>
+    </div>
+
+    <table class="tabla">
+        <tr>
+            <th>Cuatrimestre</th>
+            <th>Periodo</th>
+        </tr>
+                <tr>
+            <td>6</td>
+            <td>Mayo-Agosto</td>
+        </tr>
+        
+    </table>
+    
+
+
+
+    <!-- Tabla de Carreras -->
+    <table class="tabla">
+        <tr>
+            <th>Abreviatura</th>
+            <th>Nombre</th>
+            <th>Nivel</th>
+            
+        </tr>
+        
+        <tr>
+            <td>TIADSM</td>
+            <td>Tecnologías de la Información Área Desarrollo de Software Multiplataforma</td>
+            <td>TSU</td>
+        </tr>
+       
+    </table>
+
+
+
+    <table class="tabla">
+        <tr>
+            <th>Matricula</th>
+            <th>Nombre</th>
+            <th>Genero</th>
+            <th>Grado</th>
+            <th>Grupo</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.enrollment }}</td>
+            <td>{{ student.first_name }}</td>
+            <td>H</td>
+            <td>6</td>
+            <td>A</td>    
+        </tr>
+        {% endfor %}
+    </table>
+
+
+    <table class="tabla">
+        <tr>
+            <th>Discapacidad(V) Visual, (A) Auditiva,
+                (I) Intelectual, (M) Motora</th>
+        </tr>
+        <tr>
+            <td>V</td>
+        </tr>
+    </table>
+
+    <table class="tabla">
+        <tr>
+            <th>Sesiones Grupales</th>
+            <th>Sesiones Individuales</th>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>1</td>    
+        </tr>
+    </table>
+
+    
+    <table class="tabla">
+        <tr>
+            <th>Inasistencias</th>
+            <th>Incumplimiento de entregables</th>
+            <th>Poco Interes en asignaturas con problemas</th>
+            <th>Emocionales</th>
+            <th>Carta compromiso</th>
+            <th>Problemas emocionales</th>
+            <th>Bajo Ingreso</th>
+            <th>Trabaja</th>
+            <th>Padre o Madre de familias</th>
+            
+        </tr>
+        <tr>
+            <td>{{ student.inasistencias }}</td>
+            <td>{{ student.incumplimiento_entregables }}</td>
+            <td>{{ student.poco_interes_asignaturas }}</td>
+            <td>{{ student.emocionales }}</td>
+            <td>{{ student.carta_compromiso }}</td>
+            <td>{{ student.problemas_emocionales }}</td>
+            <td>{{ student.bajo_ingreso }}</td>
+            <td>{{ student.trabaja }}</td>
+            <td>{{ student.padre_madre_familia }}</td>
+        </tr>
+
+    </table>
+
+       <!-- <table class="tabla">
+            <tr>
+                
+            </tr>
+            <tr>
+                
+            </tr>
+        </table>
+        
+
+        <table class="tabla">
+            <tr>
+                
+            </tr>
+            <tr>
+            </tr>
+        </table>-->
+
+
+        <table class="tabla">
+            <tr>
+                <th>Academico-Calanilzado</th>
+                <th>Personal-Calanilzado</th>
+                <th>Socioeconomico-Calanilzado</th>
+            </tr>
+            <tr>
+                <td>{{ student.academico }}</td>
+                <td>{{ student.personal }}</td>
+                <td>{{ student.socioeconomico }}</td>
+            </tr>
+
+        </table>
+
+        <table class="tabla">
+            <tr>
+                <th>Academico-Retenido</th>
+                <th>Personal-Retenido</th>
+                <th>Socioeconomico-Retenido</th>
+            </tr>
+            <tr>
+                <td>{{ student.academico }}</td>
+                <td>{{ student.personal }}</td>
+                <td>{{ student.socioeconomico }}</td>
+            </tr>
+
+        </table>
+                
+    
+    
+</body>
+</html>
