@@ -39,9 +39,9 @@ def reporte_tutoria(request):
 
     else:
         tutor = request.user.professor  
-        carrera = professor.career
-        semestre = professor.group
-        grupo = professor.group
+        group = tutor.group_set.all().first()
+        carrera = group.career
+        semestre = group.semester
 
         context = {
             'reporte': { 
@@ -50,8 +50,8 @@ def reporte_tutoria(request):
                 'grupos': Group.objects.all(),
             },
             'tutor': tutor,
-            'default_carrera': carrera.id,
-            'default_semestre': semestre.id,
-            'default_grupo': grupo.id,
+            'default_carrera': Career.id,
+            'default_semestre': Semester.id,
+            'default_grupo': Group.id,
         }
         return render(request, 'reporte_tutorias/reporte_tutoria.html', context)
