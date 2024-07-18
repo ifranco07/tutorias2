@@ -1,9 +1,9 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>REPORTE DE TUTORIAS</title>
 </head>
@@ -17,59 +17,60 @@
             <h1>REPORTE DE TUTORIA</h1>
             <br>
 
-            <form method="post" action="/send/" enctype="multipart/form-data">
+            <form method="post" action="" enctype="multipart/form-data">
                 {% csrf_token %}
                 <p>Fecha de Tutoria:</p>
-                <input type="date" name="fecha" value="">
+                <input type="date" name="fecha" value="{{ fecha_tutoria|default_if_none:'' }}">
 
-            <p>Carrera:</p>
-            <select id="carrera" name="carrera">
-                <option value="">Seleccione una carrera</option>
-                {% for carrera in reporte.carreras %}
-                    <option value="{{ carrera.id }}">{{ carrera.short_name }}</option>
-                {% endfor %}
-            </select>
+                <p>Carrera:</p>
+                <select id="carrera" name="carrera">
+                    <option value="">Seleccione una carrera</option>
+                    {% for carrera in reporte.carreras %}
+                        <option value="{{ carrera.id }}" {% if carrera.id == default_carrera %} selected {% endif %}>{{ carrera.short_name }}</option>
+                    {% endfor %}
+                </select>
 
-            <p>Semestre:</p>
-            <select name="semestre" id="semestre">
-                <option value="">Selecciona el semestre</option>
-                {% for cuatrimestre in reporte.semestres %}
-                    <option value="{{ cuatrimestre.id }}">{{ cuatrimestre.semester }}</option>
-                {% endfor %}
-            </select>
+                <p>Semestre:</p>
+                <select name="semestre" id="semestre">
+                    <option value="">Selecciona el semestre</option>
+                    {% for cuatrimestre in reporte.semestres %}
+                        <option value="{{ cuatrimestre.id }}" {% if cuatrimestre.id == default_semestre %} selected {% endif %}>{{ cuatrimestre.semester }}</option>
+                    {% endfor %}
+                </select>
 
-            <p>Grupo:</p>
-            <select name="grupo" id="grupo">
-                <option value="">Selecciona el grupo</option>
-                {% for grupo in reporte.grupos %}
-                    <option value="{{ grupo.id }}">{{ grupo.group }}</option>
-                {% endfor %}
-            </select>
+                <p>Grupo:</p>
+                <select name="grupo" id="grupo">
+                    <option value="">Selecciona el grupo</option>
+                    {% for grupo in reporte.grupos %}
+                        <option value="{{ grupo.id }}" {% if grupo.id == default_grupo %} selected {% endif %}>{{ grupo.group }}</option>
+                    {% endfor %}
+                </select>
 
-            <br>
-            <p>Nombre de la Actividad:</p>
-            <input type="text">
+                <br>
+                <p>Nombre de la Actividad:</p>
+                <input type="text" name="nombre_actividad">
 
-            <br>
-            <p>Objetivo de la Actividad:</p>
-            <textarea rows="4"></textarea>
+                <br>
+                <p>Objetivo de la Actividad:</p>
+                <textarea rows="4" name="objetivo_actividad"></textarea>
 
-            <br>
-            <p>Descripción de la Actividad:</p>
-            <textarea rows="6"></textarea>
+                <br>
+                <p>Descripción de la Actividad:</p>
+                <textarea rows="6" name="descripcion_actividad"></textarea>
 
-            <br>
-            <p>Evidencias </p>
-            <input type="file" accept=".png, .jpg, .jpeg, .mp4">
-            <input type="file" accept=".pdf, .mp3">
+                <br>
+                <p>Evidencias</p>
+                <input type="file" name="evidencia1" accept=".png, .jpg, .jpeg, .mp4">
+                <input type="file" name="evidencia2" accept=".pdf, .mp3">
 
-            <br>
-            <button type="submit">Enviar</button>
+                <br>
+                <button type="submit">Enviar</button>
+            </form>
         </div>
         <br>
 
         <footer>
-            <img src="{% static 'img/Footer.jpg'%}" alt="Pie de página">
+            <img src="{% static 'img/Footer.jpg' %}" alt="Pie de página">
         </footer>
     </div>
 </body>

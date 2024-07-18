@@ -27,10 +27,13 @@
     <p>Tipo de Sangre: {{ professor.profile.tipo_sangre }}</p>
 
     <h3>Acciones</h3>
-    <a href="{% url 'update_profile' %}">Actualizar Usuario</a>
-    <a href="{% url 'update_perfil' %}">Actualizar Perfil</a>
-    <a href="{% url 'students_list' %}">Lista de estudiantes</a>
-    <a href="{% url 'Login' %}">Cerrar Sesión</a>
+    <ul>
+        <li><a href="{% url 'update_profile' %}">Actualizar Usuario</a></li>
+        <li><a href="{% url 'update_perfil' %}">Actualizar Perfil</a></li>
+        <li><a href="{% url 'students_list' %}">Lista de estudiantes</a></li>
+        <li><a href="{% url 'reporte_tutoria:reporte_tutorias' %}">Reporte de Tutorías</a></li>
+        <li><a href="{% url 'Login' %}">Cerrar Sesión</a></li>
+    </ul>
     
 {% endblock %}
  
