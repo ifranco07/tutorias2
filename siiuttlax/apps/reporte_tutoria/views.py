@@ -16,8 +16,8 @@ def reporte_tutoria(request):
         nombre_actividad = request.POST.get('nombre_actividad')
         objetivo_actividad = request.POST.get('objetivo_actividad')
         descripcion_actividad = request.POST.get('descripcion_actividad')
-        evidencia1 = request.FILES.get('evidencia1')
-        evidencia2 = request.FILES.get('evidencia2')
+        evidencias = request.FILES.get('evidencias')
+        lista = request.FILES.get('lista_asistencia')
 
         reporte = ReporteTutoria(
             fecha_tutoria=fecha_tutoria,
@@ -27,21 +27,21 @@ def reporte_tutoria(request):
             nombre_actividad=nombre_actividad,
             objetivo_actividad=objetivo_actividad,
             descripcion_actividad=descripcion_actividad,
-            evidencia1=evidencia1,
-            evidencia2=evidencia2,
+            evidencias=evidencias,
+            lista=lista_asitencia,
             tutor=request.user.professor
         )
         reporte.save()
 
         
         # Redirigir a una página de éxito o a donde necesites después de guardar
-        return redirect('ruta_de_exito')  # Reemplazar 'ruta_de_exito' con la URL a donde deseas redirigir
+        return redirect('')  # Reemplazar 'ruta_de_exito' con la URL a donde deseas redirigir
 
     else:
         tutor = request.user.professor  
-        carrera = professor.career
-        semestre = professor.group
-        grupo = professor.group
+        group = tutor.group_set.all().first()
+        carrera = group.career
+        semestre = group.semester
 
         context = {
             'reporte': { 
@@ -50,8 +50,8 @@ def reporte_tutoria(request):
                 'grupos': Group.objects.all(),
             },
             'tutor': tutor,
-            'default_carrera': carrera.id,
-            'default_semestre': semestre.id,
-            'default_grupo': grupo.id,
+            'default_carrera': Career.id,
+            'default_semestre': Semester.id,
+            'default_grupo': Group.id,
         }
         return render(request, 'reporte_tutorias/reporte_tutoria.html', context)
