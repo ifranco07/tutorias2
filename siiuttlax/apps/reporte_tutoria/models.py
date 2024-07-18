@@ -1,37 +1,12 @@
-from django.db import models
-from django.utils import timezone
+# from django.db import models
+# from django.utils import timezone
 
-class Tutor(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    department = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
-
-class Student(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    career = models.CharField(max_length=100)
-    grade = models.CharField(max_length=10)
-    group = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.name
-
-class Activity(models.Model):
-    name = models.CharField(max_length=100)
-    objective = models.TextField()
-    description = models.TextField()
-
-    def __str__(self):
-        return self.name
-
-class TutoringSession(models.Model):
-    tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE)
-    students = models.ManyToManyField(Student)
-    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
-    date = models.DateField(default=timezone.now)
-
-    def __str__(self):
-        return f"Tutoring session on {self.date} by {self.tutor}"
+# class ReporteTutoria(models.Model):
+#     date = models.CharField(max_length=50, verbose_name="Fecha")
+#     career = models.CharField(max_length=50, verbose_name="Carrera")
+#     semester = models.CharField(max_length=50, verbose_name="Semestre")
+#     group = models.CharField(max_length=50, verbose_name="Grupo")
+#     name_activity = models.CharField(max_length=20, verbose_name="Nombre de la Actividad")
+#     objective_activity = models.CharField(max_length=100, verbose_name="Objetivo de la actividad")
+#     description_activity = models.CharField(max_length=500, verbose_name="Descripcion de la actividad")
+#     file_img = models.models.CharField(max_length=50, verbose_name ="Archivo imagen")
