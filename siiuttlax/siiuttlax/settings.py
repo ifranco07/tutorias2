@@ -150,6 +150,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # settings.py
 
+# Redirige a la página de inicio después de cerrar sesión
+LOGOUT_REDIRECT_URL = '/'
+
+
 
 
 
