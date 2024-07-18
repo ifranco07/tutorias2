@@ -12,6 +12,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
     'apps.academy.apps.AcademyConfig',
     'apps.user_profile.apps.UserProfileConfig', 
     'apps.interview.apps.InterviewConfig', 
+    'apps.testvak.apps.VAKInterviewConfig', 
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -148,8 +151,3 @@ STATICFILES_DIRS = [BASE_DIR / 'static'] # Comment in production
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # settings.py
-
-
-
-
-
