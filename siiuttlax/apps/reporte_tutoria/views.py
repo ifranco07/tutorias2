@@ -8,7 +8,6 @@ from .models import ReporteTutoria
 
 def reporte_tutoria(request):
     if request.method == 'POST':
-        # Procesar el formulario enviado
         fecha_tutoria = request.POST.get('fecha')
         carrera_id = request.POST.get('carrera')
         semestre_id = request.POST.get('semestre')
