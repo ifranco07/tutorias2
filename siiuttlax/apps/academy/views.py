@@ -4,12 +4,19 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.contrib import messages
 from .forms import StudentRegistrationForm
+from apps.vocational.models import Exam
 
 def register(request):
     if request.method == 'POST':
         form = StudentRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
+
+            exam = Exam.objects.create(
+                user=user)
+            exam.set_modules()
+            exam.set_questions()
+
             messages.success(request, '¡Tu cuenta ha sido creada! Puedes iniciar sesión ahora.')
             return redirect('Login')
     else:
