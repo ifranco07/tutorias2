@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'apps.career.apps.CareerConfig',
     'apps.home.apps.HomeConfig',
     'apps.period.apps.PeriodConfig',
+    'apps.cumplimiento.apps.CumplimientoConfig',
     #'apps.hourly_load.apps.HourlyLoadConfig',
     'apps.group.apps.GroupConfig',
     'apps.academy.apps.AcademyConfig',
@@ -151,3 +152,12 @@ STATICFILES_DIRS = [BASE_DIR / 'static'] # Comment in production
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # settings.py
+
+# Redirige a la página de inicio después de cerrar sesión
+LOGOUT_REDIRECT_URL = '/'
+
+
+
+
+
+
