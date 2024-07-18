@@ -19,52 +19,65 @@
 
             <form method="post" action="" enctype="multipart/form-data">
                 {% csrf_token %}
-                <p>Fecha de Tutoria:</p>
-                <input type="date" name="fecha" value="{{ fecha_tutoria|default_if_none:'' }}">
+                
+                <div>
+                    <label for="fecha">Fecha de Tutoria:</label>
+                    <input type="date" id="fecha" name="fecha" value="{{ fecha_tutoria|date:"Y-m-d" }}" title="Fecha de Tutoria">
+                </div>
 
-                <p>Carrera:</p>
-                <select id="carrera" name="carrera">
-                    <option value="">Seleccione una carrera</option>
-                    {% for carrera in reporte.carreras %}
-                        <option value="{{ carrera.id }}" {% if carrera.id == default_carrera %} selected {% endif %}>{{ carrera.short_name }}</option>
-                    {% endfor %}
-                </select>
+                <div>
+                    <label for="carrera">Carrera:</label>
+                    <select id="carrera" name="carrera" title="Selecciona una carrera">
+                        <option value="">Seleccione una carrera</option>
+                        {% for carrera in reporte.carreras %}
+                            <option value="{{ carrera.id }}" {% if carrera.id == default_carrera %} selected {% endif %}>{{ carrera.short_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <br>
+                <div>
+                    <label for="semestre">Semestre:</label>
+                    <select id="semestre" name="semestre" title="Selecciona el semestre">
+                        <option value="">Selecciona el semestre</option>
+                        {% for cuatrimestre in reporte.semestres %}
+                            <option value="{{ cuatrimestre.id }}" {% if cuatrimestre.id == default_semestre %} selected {% endif %}>{{ cuatrimestre.semester }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <br>
+                <div>
+                    <label for="grupo">Grupo:</label>
+                    <select id="grupo" name="grupo" title="Selecciona el grupo">
+                        <option value="">Selecciona el grupo</option>
+                        {% for grupo in reporte.grupos %}
+                            <option value="{{ grupo.id }}" {% if grupo.id == default_grupo %} selected {% endif %}>{{ grupo.group }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <br>
+                <div>
+                    <label for="nombre_actividad">Nombre de la Actividad:</label>
+                    <input type="text" id="nombre_actividad" name="nombre_actividad" placeholder="Nombre de la actividad" title="Nombre de la Actividad">
+                </div>
 
-                <p>Semestre:</p>
-                <select name="semestre" id="semestre">
-                    <option value="">Selecciona el semestre</option>
-                    {% for cuatrimestre in reporte.semestres %}
-                        <option value="{{ cuatrimestre.id }}" {% if cuatrimestre.id == default_semestre %} selected {% endif %}>{{ cuatrimestre.semester }}</option>
-                    {% endfor %}
-                </select>
+                <div>
+                    <label for="objetivo_actividad">Objetivo de la Actividad:</label>
+                    <textarea id="objetivo_actividad" name="objetivo_actividad" rows="4" placeholder="Objetivo de la actividad" title="Objetivo de la Actividad"></textarea>
+                </div>
 
-                <p>Grupo:</p>
-                <select name="grupo" id="grupo">
-                    <option value="">Selecciona el grupo</option>
-                    {% for grupo in reporte.grupos %}
-                        <option value="{{ grupo.id }}" {% if grupo.id == default_grupo %} selected {% endif %}>{{ grupo.group }}</option>
-                    {% endfor %}
-                </select>
+                <div>
+                    <label for="descripcion_actividad">Descripción de la Actividad:</label>
+                    <textarea id="descripcion_actividad" name="descripcion_actividad" rows="6" placeholder="Descripción de la actividad" title="Descripción de la Actividad"></textarea>
+                </div>
+
+                <div>
+                    <label for="evidencia1">Evidencias:</label>
+                    <input type="file" id="evidencia1" name="evidencia1" accept=".png, .jpg, .jpeg, .mp4" title="Selecciona evidencia">
+                    <input type="file" id="evidencia2" name="evidencia2" accept=".pdf, .mp3" title="Selecciona evidencia adicional">
+                </div>
 
                 <br>
-                <p>Nombre de la Actividad:</p>
-                <input type="text" name="nombre_actividad">
-
-                <br>
-                <p>Objetivo de la Actividad:</p>
-                <textarea rows="4" name="objetivo_actividad"></textarea>
-
-                <br>
-                <p>Descripción de la Actividad:</p>
-                <textarea rows="6" name="descripcion_actividad"></textarea>
-
-                <br>
-                <p>Evidencias</p>
-                <input type="file" name="Evidencias" accept=".png, .jpg, .jpeg, .mp4">
-                <input type="file" name="Lista de Asistencia" accept=".pdf, .mp3">
-
-                <br>
-                <button type="submit">Enviar</button>
+                <button type="submit" title="Enviar">Enviar</button>
             </form>
         </div>
         <br>

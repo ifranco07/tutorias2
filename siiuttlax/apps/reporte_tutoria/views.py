@@ -8,7 +8,6 @@ from .models import ReporteTutoria
 
 def reporte_tutoria(request):
     if request.method == 'POST':
-        # Procesar el formulario enviado
         fecha_tutoria = request.POST.get('fecha')
         carrera_id = request.POST.get('carrera')
         semestre_id = request.POST.get('semestre')
@@ -17,7 +16,7 @@ def reporte_tutoria(request):
         objetivo_actividad = request.POST.get('objetivo_actividad')
         descripcion_actividad = request.POST.get('descripcion_actividad')
         evidencias = request.FILES.get('evidencias')
-        lista = request.FILES.get('lista_asistencia')
+        lista_asistencia = request.FILES.get('lista_asistencia')
 
         reporte = ReporteTutoria(
             fecha_tutoria=fecha_tutoria,
@@ -28,18 +27,17 @@ def reporte_tutoria(request):
             objetivo_actividad=objetivo_actividad,
             descripcion_actividad=descripcion_actividad,
             evidencias=evidencias,
-            lista=lista_asitencia,
+            lista_asistencia=lista_asistencia,
             tutor=request.user.professor
         )
         reporte.save()
 
-        
         # Redirigir a una página de éxito o a donde necesites después de guardar
-        return redirect('')  # Reemplazar 'ruta_de_exito' con la URL a donde deseas redirigir
+        return redirect('success')  # Reemplazar 'success' con la URL a donde deseas redirigir
 
     else:
         tutor = request.user.professor  
-        group = tutor.group_set.all().first()
+        group = tutor.group_set.first()  # Obtener el primer grupo del tutor
         carrera = group.career
         semestre = group.semester
 
@@ -49,9 +47,8 @@ def reporte_tutoria(request):
                 'semestres': Semester.objects.all(),  
                 'grupos': Group.objects.all(),
             },
-            'tutor': tutor,
-            'default_carrera': Career.id,
-            'default_semestre': Semester.id,
-            'default_grupo': Group.id,
+            'default_carrera': carrera.id,
+            'default_semestre': semestre.id,
+            'default_grupo': group.id,
         }
         return render(request, 'reporte_tutorias/reporte_tutoria.html', context)
