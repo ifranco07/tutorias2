@@ -1,12 +1,25 @@
-# from django.db import models
-# from django.utils import timezone
+from django.db import models
+from apps.career.models import Career
+from apps.period.models import Semester
+from apps.group.models import Group
+from apps.academy.models import Professor
 
-# class ReporteTutoria(models.Model):
-#     date = models.CharField(max_length=50, verbose_name="Fecha")
-#     career = models.CharField(max_length=50, verbose_name="Carrera")
-#     semester = models.CharField(max_length=50, verbose_name="Semestre")
-#     group = models.CharField(max_length=50, verbose_name="Grupo")
-#     name_activity = models.CharField(max_length=20, verbose_name="Nombre de la Actividad")
-#     objective_activity = models.CharField(max_length=100, verbose_name="Objetivo de la actividad")
-#     description_activity = models.CharField(max_length=500, verbose_name="Descripcion de la actividad")
-#     file_img = models.models.CharField(max_length=50, verbose_name ="Archivo imagen")
+class ReporteTutoria(models.Model):
+    fecha_tutoria = models.DateField(verbose_name='Fecha de Tutoría')
+    carrera = models.ForeignKey(Career, on_delete=models.CASCADE, verbose_name='Carrera')
+    semestre = models.ForeignKey(Semester, on_delete=models.CASCADE, verbose_name='Semestre')
+    grupo = models.ForeignKey(Group, on_delete=models.CASCADE, verbose_name='Grupo')
+    nombre_actividad = models.CharField(max_length=255, verbose_name='Nombre de la Actividad')
+    objetivo_actividad = models.TextField(verbose_name='Objetivo de la Actividad')
+    descripcion_actividad = models.TextField(verbose_name='Descripción de la Actividad')
+    evidencia1 = models.FileField(upload_to='evidencias/', verbose_name='Evidencia 1', blank=True, null=True)
+    evidencia2 = models.FileField(upload_to='evidencias/', verbose_name='Evidencia 2', blank=True, null=True)
+    tutor = models.ForeignKey(Professor, on_delete=models.CASCADE, verbose_name='Tutor')
+
+    def __str__(self):
+        return f'Reporte de Tutoría {self.fecha_tutoria} - {self.tutor}'
+
+    class Meta:
+        verbose_name = 'Reporte de Tutoría'
+        verbose_name_plural = 'Reportes de Tutorías'
+        ordering = ['-fecha_tutoria']

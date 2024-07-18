@@ -10,8 +10,8 @@ body {
 }
 
 .hoja {
-    width: 21cm; /* Ancho típico de una hoja A4 */
-    min-height: 29.7cm; /* Altura mínima de una hoja A4 */
+    width: 21cm; 
+    min-height: 29.7cm; 
     padding: 2cm;
     background: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
