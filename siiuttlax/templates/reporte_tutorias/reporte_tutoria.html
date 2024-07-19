@@ -27,32 +27,35 @@
 
                 <div>
                     <label for="carrera">Carrera:</label>
-                    <select id="carrera" name="carrera" title="Selecciona una carrera">
+                    <select id="carrera" disabled>
                         <option value="">Seleccione una carrera</option>
                         {% for carrera in reporte.carreras %}
                             <option value="{{ carrera.id }}" {% if carrera.id == default_carrera %} selected {% endif %}>{{ carrera.short_name }}</option>
                         {% endfor %}
                     </select>
+                    <input type="hidden" name="carrera" value="{{ default_carrera }}">
                 </div>
                 <br>
                 <div>
                     <label for="semestre">Semestre:</label>
-                    <select id="semestre" name="semestre" title="Selecciona el semestre">
+                    <select id="semestre" disabled>
                         <option value="">Selecciona el semestre</option>
                         {% for cuatrimestre in reporte.semestres %}
                             <option value="{{ cuatrimestre.id }}" {% if cuatrimestre.id == default_semestre %} selected {% endif %}>{{ cuatrimestre.semester }}</option>
                         {% endfor %}
                     </select>
+                    <input type="hidden" name="semestre" value="{{ default_semestre }}">
                 </div>
                 <br>
                 <div>
                     <label for="grupo">Grupo:</label>
-                    <select id="grupo" name="grupo" title="Selecciona el grupo">
+                    <select id="grupo" disabled>
                         <option value="">Selecciona el grupo</option>
                         {% for grupo in reporte.grupos %}
                             <option value="{{ grupo.id }}" {% if grupo.id == default_grupo %} selected {% endif %}>{{ grupo.group }}</option>
                         {% endfor %}
                     </select>
+                    <input type="hidden" name="grupo" value="{{ default_grupo }}">
                 </div>
                 <br>
                 <div>
@@ -73,7 +76,8 @@
                 <div>
                     <label for="evidencia1">Evidencias:</label>
                     <input type="file" id="evidencia1" name="evidencia1" accept=".png, .jpg, .jpeg, .mp4" title="Selecciona evidencia">
-                    <input type="file" id="evidencia2" name="evidencia2" accept=".pdf, .mp3" title="Selecciona evidencia adicional">
+                    <input type="file" id="evidencia2" name="evidencia2" accept=".pdf" title="Selecciona evidencia adicional">
+                    <input type="file" id="evidencia2" name="evidencia3" accept=".mp3" title="Selecciona evidencia adicional">
                 </div>
 
                 <br>
