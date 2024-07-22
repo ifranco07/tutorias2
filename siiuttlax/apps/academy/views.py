@@ -19,39 +19,47 @@ def register(request):
         form = StudentRegistrationForm()
     return render(request, 'login/register.html', {'form': form})
 
-
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from apps.group.models import Group
-from apps.interview.models import InitialInterview 
+from apps.interview.models import InitialInterview
 
 @login_required
 def students_list(request):
-    # Obtener al tutor (Professor) asociado al usuario actual
     professor = request.user.professor
+    groups = Group.objects.filter(tutor=professor)
 
-    # Obtener el grupo del tutor (Professor)
-    group = Group.objects.filter(tutor=professor).first()
-
-    # Validar si se encontró el grupo del tutor
-    if group:
-        # Obtener las entrevistas iniciales asociadas al grupo escolar del tutor
-        interviews = InitialInterview.objects.filter(grupo_escolar=group)
-
-        # Obtener los estudiantes asociados a través de las entrevistas
-        students = [interview.student for interview in interviews if interview.student]  # Filtra estudiantes no nulos
-
+    if not groups.exists():
+        messages.error(request, 'No tiene ningún grupo asignado.')
         return render(request, 'interview/students_list.html', {
-            'group': group,
-            'students': students
-        })
-    else:
-        # Manejar el caso donde el tutor no tiene asignado ningún grupo
-        return render(request, 'interview/students_list.html', {
-            'group': None,
+            'groups': [],
+            'selected_group': None,
             'students': []
         })
-    
+
+    selected_group_id = request.GET.get('group_id')
+    selected_group = groups.filter(id=selected_group_id).first() if selected_group_id else None
+
+    students = []
+    if selected_group:
+        interviews = InitialInterview.objects.filter(grupo_escolar=selected_group)
+        students = [interview.student for interview in interviews if interview.student]
+
+    return render(request, 'interview/students_list.html', {
+        'groups': groups,
+        'selected_group': selected_group,
+        'students': students
+    })
+
+@login_required
+def reactivate_interview(request, student_id):
+    interview = get_object_or_404(InitialInterview, student_id=student_id)
+    interview.active = True
+    interview.save()
+    messages.success(request, 'La entrevista inicial ha sido reactivada.')
+    return redirect('students_list')
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .forms import ProfessorForm
