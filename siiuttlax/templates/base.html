@@ -1,10 +1,9 @@
-{% load static %}
-
 <!DOCTYPE html>
-<html lang="es-en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -13,16 +12,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <title>Tutorias | {% block title %}{% endblock %}</title>
+    <title>Tutorías | {% block title %}{% endblock %}</title>
 </head>
 <body>
     <nav>
         <div class="logo">
-            <img src="{% static 'img/logoUTT.png'%}">
+            <img src="{% static 'img/logoUTT.png'%}" alt="Logo"/>
             <h1>Sistema Integral de Tutorías</h1>
         </div>
 
         <ul class="navigation">
+            <li><a href="{% url 'home' %}">Inicio</a></li>
             <li>
                 <a href="{% url 'home' %}">Inicio</a>
             </li>
@@ -97,7 +97,7 @@
                 </a>
             </li>
             <button>Iniciar sesión</button>
-            
+          
             {% if user.is_authenticated %}
                 {% if user_type == 'profesor' %}
                     <li>
@@ -123,6 +123,7 @@
                                 <li><a href="{% url 'update_profile' %}">Actualizar Usuario</a></li>
                                 <li><a href="{% url 'update_perfil' %}">Actualizar Perfil</a></li>
                                 <li><a href="{% url 'students_list' %}">Lista de estudiantes</a></li>
+                                <li><a href="{% url 'reporte_tutoria:reporte_tutorias' %}">Reportes de Tutoria</a></li>
                             </ul>
                         </div>
                     </li>
@@ -198,14 +199,15 @@
             {% endif %}
 
             {% if user.is_authenticated %}
-                <form action="{% url 'logout' %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="btn">Cerrar sesión</button>
-                </form>
+                <li>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">Cerrar sesión</button>
+                    </form>
+                </li>
             {% else %}
-                <a href="{% url 'login' %}" class="btn">Iniciar sesión</a>
+                <li><a href="{% url 'login' %}" class="btn">Iniciar sesión</a></li>
             {% endif %}
-
         </ul>
     </nav>
     <div class="container">

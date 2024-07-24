@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     
 
     'apps.seguimiento.apps.SeguimientoConfig',
+    'apps.reporte_tutoria.apps.ReporteTutoriaConfig',
 
     'apps.justify.apps.JustifyConfig',
 

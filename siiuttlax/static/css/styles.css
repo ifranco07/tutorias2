@@ -1,79 +1,3 @@
-/* Reset de márgenes y paddings */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Estilos generales */
-body {
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
-}
-
-/* Estilos para la hoja de reporte */
-.hoja {
-    width: 21cm;
-    min-height: 29.7cm;
-    padding: 2cm;
-    background: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    position: relative;
-}
-
-header, footer {
-    width: 100%;
-    text-align: center;
-    background-color: white;
-    margin-bottom: 20px;
-}
-
-header img, footer img {
-    width: 100%;
-    max-width: 100%;
-}
-
-.encabezado {
-    margin: 20px 0; /* Espacio entre el contenido y el header/footer */
-}
-
-.encabezado h1 {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 1cm;
-}
-
-.encabezado p {
-    margin: 10px 0 5px;
-    font-weight: bold;
-}
-
-.encabezado input, .encabezado textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    font-family: inherit;
-    font-size: 14px;
-}
-
-.encabezado input[type="date"] {
-    width: auto;
-}
-
-.encabezado button, .encabezado input[type="file"] {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    font-size: 16px;
-}
-
 /* Estilos del navbar */
 nav {
     background: white;
@@ -118,10 +42,7 @@ nav .navigation li {
     position: relative;
     transition: all 0.5s ease;
     flex-grow: 1;
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
+    user-select: none;
     width: auto;
 }
 
@@ -305,7 +226,6 @@ button:hover {
     font-size: 18px;
     color: #555;
     margin-bottom: 10px;
-    /*text-align: center;*/
 }
 
 /* Estilos para los campos del formulario */
@@ -319,7 +239,7 @@ button:hover {
     border-radius: 5px;
     box-sizing: border-box;
 }
-.update-profile-form textarea{
+.update-profile-form textarea {
     height: 120px;
     width: 562px;
 }
@@ -417,20 +337,88 @@ button:hover {
     width: 100%;
     text-align: center;
 }
-
-/* Estilos específicos para el botón de reactivación */
-.btn-reactivate {
-    background-color: #21bb18; /* Color de fondo del botón */
-    color: white; /* Color del texto */
-    padding: 0.5rem 1rem; /* Espaciado interno del botón */
-    border: none; /* Sin borde */
-    border-radius: 4px; /* Bordes redondeados */
-    font-size: 14px; /* Tamaño de la fuente */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    transition: background-color 0.3s, color 0.3s; /* Transición suave para el cambio de color */
+/* Estilos del body para centrar el contenido */
+body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    position: relative;
 }
 
-.btn-reactivate:hover {
-    background-color: #00e68a; /* Color de fondo en hover */
-    color: black; /* Color del texto en hover */
+/* Estilos del contenedor hoja */
+.hoja {
+    width: 21cm; 
+    min-height: 29.7cm; 
+    padding: 2cm;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Asegura que el contenido interno esté centrado horizontalmente */
+    overflow: hidden;
+    margin-top: 4rem; /* Espacio suficiente para separar la barra de navegación */
 }
+
+/* Estilos para el header y footer */
+header, footer {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+header img, footer img {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Estilos para el formulario */
+.encabezado {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.encabezado h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 1cm;
+}
+
+.encabezado p {
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.encabezado input, .encabezado textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.encabezado input[type="date"] {
+    width: auto;
+}
+
+.encabezado button, .encabezado input[type="file"] {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+@media (max-width: 1500px) {
+    .hoja {
+        margin-top: 7rem; /* Ajustar el margen para dispositivos móviles si es necesario */
+    }
+}
+
