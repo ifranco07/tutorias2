@@ -10,7 +10,6 @@ from apps.cumplimiento.views import index, consultas_por_periodo
 
 
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.home.urls')),
@@ -27,4 +26,5 @@ urlpatterns = [
     path('solicitar/', alumno_view, name='ruta_alumno'),
     path('revisar/', tutor_view, name='ruta_tutor'),
     path('revisar/justificante/<int:justificante_id>/', revisar_justificante_view, name='ruta_para_revisar_justificante'),
+    
 ]
