@@ -363,5 +363,23 @@ button:hover {
     text-align: center;
 }
 
+/* Estilos específicos para el botón de reactivación */
+.btn-reactivate {
+    background-color: #21bb18; /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    padding: 0.5rem 1rem; /* Espaciado interno del botón */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    font-size: 14px; /* Tamaño de la fuente */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave para el cambio de color */
+}
+
+.btn-reactivate:hover {
+    background-color: #00e68a; /* Color de fondo en hover */
+    color: black; /* Color del texto en hover */
+}
+
+
 
 
