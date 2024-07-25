@@ -3,19 +3,35 @@
 
 {% block title %}Consultas por Periodo{% endblock %}
 
-{% block content %}
-<h1>Consultas para el Periodo {{ periodo }}</h1>
-{% for grupo in grupos %}
-    <div class="grupo-item">
-        <h2>Grupo {{ grupo.Grupo }}</h2>
-        <p><strong>Cuatrimestre:</strong> {{ grupo.Cuatrimestre }}</p>
-        <p><strong>Periodo:</strong> {{ grupo.Periodo }}</p>
-        <p><strong>Tutor:</strong> {{ grupo.Tutor }}</p>
-    </div>
-{% endfor %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/cumplimiento.css' %}">
 {% endblock %}
 
-{% block extra_css %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/cumplimiento.css' %}">
+{% block content %}
+<div class="periodo-select">
+    <select>
+        {% for grupo in grupos %}
+            <option value="{{ grupo.Periodo }}">Periodo:  {{ grupo.Periodo }}</option>
+        {% endfor %}
+    </select>
+</div>
+<div class="grupo-container">
+    {% for grupo in grupos %}
+        <div class="grupo-item">
+            <div class="info-container">
+                <p><strong>Tutor:</strong> {{ grupo.Tutor }}</p>
+                <p><strong>Grupo:</strong> {{ grupo.Grupo }}</p>
+                <p><strong>Cuatrimestre:</strong> {{ grupo.Cuatrimestre }}</p>
+            </div>
+            <div class="actividades-container">
+                <ul class="lista-actividades">
+                    <li>Actividad 1: {{ grupo.Actividad1 }}</li>
+                    <li>Actividad 2: {{ grupo.Actividad2 }}</li>
+                    <li>Actividad 3: {{ grupo.Actividad3 }}</li>
+                    <li>Actividad 4: {{ grupo.Actividad4 }}</li>
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
