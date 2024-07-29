@@ -12,8 +12,10 @@ class ReporteTutoria(models.Model):
     nombre_actividad = models.CharField(max_length=255, verbose_name='Nombre de la Actividad')
     objetivo_actividad = models.TextField(verbose_name='Objetivo de la Actividad')
     descripcion_actividad = models.TextField(verbose_name='Descripción de la Actividad')
-    evidencias = models.FileField(upload_to='evidencias/', verbose_name='Evidencias', blank=True, null=True)
-    lista_asistencia = models.FileField(upload_to='lista_asistencia/', verbose_name='ListaAistencia', blank=True, null=True)
+    evidencia_fotografica = models.FileField(upload_to='evidencias/imagenes_videos', verbose_name='Evidencia fotografica', blank=True, null=True)
+    evidencia_lista_asistencia = models.FileField(upload_to='evidencias/pdf', verbose_name='Evidencia list_asistencia', blank=True, null=True)
+    evidencia_audio = models.FileField(upload_to='evidencias/audio', verbose_name='Evidencia de audio', blank=True, null=True)
+    evidencia_canalizacion_alumno = models.FileField(upload_to='evidencias/pdf_canalizacion', verbose_name='Evidencia pdf_canalizacion', blank=True, null=True)
     tutor = models.ForeignKey(Professor, on_delete=models.CASCADE, verbose_name='Tutor')
 
     def __str__(self):

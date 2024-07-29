@@ -15,8 +15,11 @@ def reporte_tutoria(request):
         nombre_actividad = request.POST.get('nombre_actividad')
         objetivo_actividad = request.POST.get('objetivo_actividad')
         descripcion_actividad = request.POST.get('descripcion_actividad')
-        evidencias = request.FILES.get('evidencias')
-        lista_asistencia = request.FILES.get('lista_asistencia')
+        # evidencias = request.FILES.get('evidencias')
+        evidencia_fotografica = request.FILES.get('evidencias')
+        evidencia_lista_asistencia = request.FILES.get('lista_asistencia')
+        evidencia_audio = request.FILES.get('evidencias')
+        evidencia_canalizacion_alumno = request.FILES.get('evidencias')
 
         reporte = ReporteTutoria(
             fecha_tutoria=fecha_tutoria,
@@ -26,14 +29,17 @@ def reporte_tutoria(request):
             nombre_actividad=nombre_actividad,
             objetivo_actividad=objetivo_actividad,
             descripcion_actividad=descripcion_actividad,
-            evidencias=evidencias,
-            lista_asistencia=lista_asistencia,
-            tutor=request.user.professor
+            # evidencias=evidencias,
+            evidencia_fotografica=evidencia_fotografica,
+            evidencia_lista_asistencia=evidencia_lista_asistencia,
+            evidencia_audio=evidencia_audio,
+            evidencia_canalizacion_alumno=evidencia_canalizacion_alumno,
+            tutor=request.user.professor    
         )
         reporte.save()
 
         # Redirigir a una página de éxito o a donde necesites después de guardar
-        return redirect('home.html')  # Reemplazar 'success' con la URL a donde deseas redirigir
+        return redirect('reporte_tutoria:success')  # Reemplazar 'success' con la URL a donde deseas redirigir
 
     else:
         tutor = request.user.professor  
@@ -52,3 +58,6 @@ def reporte_tutoria(request):
             'default_grupo': group.id,
         }
         return render(request, 'reporte_tutorias/reporte_tutoria.html', context)
+    
+def success_view(request):
+    return render(request, 'reporte_tutorias/success.html')
