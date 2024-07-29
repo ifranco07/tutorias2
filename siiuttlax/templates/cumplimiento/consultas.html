@@ -11,8 +11,9 @@
 <div class="content-container">
     <div class="periodo-select">
         <select>
-            {% for grupo in grupos %}
-                <option value="{{ grupo.Periodo }}">Periodo:  {{ grupo.Periodo }}</option>
+            <option value="">Selecciona un periodo</option>
+            {% for period in periods %}
+                <option value="{{ period.id }}">{{ period.period }}: {{ period.year }} </option>
             {% endfor %}
         </select>
     </div>
