@@ -76,7 +76,6 @@
 
             <form method="post" action="" enctype="multipart/form-data">
                 {% csrf_token %}
-                
                 <div>
                     <label for="fecha">Fecha de Tutoria:</label>
                     <input type="date" id="fecha" name="fecha" value="{{ fecha_tutoria|date:"Y-m-d" }}" title="Fecha de Tutoria">
@@ -131,10 +130,17 @@
                 </div>
 
                 <div>
-                    <label for="evidencia1">Evidencias:</label>
-                    <input type="file" id="evidencia1" name="evidencia1" accept=".png, .jpg, .jpeg, .mp4" title="Selecciona evidencia">
-                    <input type="file" id="evidencia2" name="evidencia2" accept=".pdf" title="Selecciona evidencia adicional">
-                    <input type="file" id="evidencia2" name="evidencia3" accept=".mp3" title="Selecciona evidencia adicional">
+                    <label for="evidencia1" class="file-label">Evidencia de Imagen/Video:</label>
+                    <input type="file" id="evidencia1" name="evidencia1" accept=".png, .jpg, .jpeg, .mp4" title="Selecciona evidencia" data-description="Sube una imagen o un video.">
+            
+                    <label for="evidencia2" class="file-label">Evidencia en PDF de la lista de asistencia :</label>
+                    <input type="file" id="evidencia2" name="evidencia2" accept=".pdf" title="Selecciona evidencia adicional" data-description="Sube un archivo PDF.">
+            
+                    <label for="evidencia3" class="file-label">Evidencia de Audio de la lista de asistencia:</label>
+                    <input type="file" id="evidencia3" name="evidencia3" accept=".mp3" title="Selecciona evidencia adicional" data-description="Sube un archivo de audio en formato MP3.">
+            
+                    <label for="evidencia4" class="file-label">Evidencia en PDF del alumno canalizado:</label>
+                    <input type="file" id="evidencia4" name="evidencia4" accept=".pdf" title="Selecciona evidencia adicional" data-description="Sube otro archivo PDF de canalizacion de alumno.">
                 </div>
 
                 <br>
@@ -142,6 +148,8 @@
                 <ul>
                     <li><a href="{% url 'home' %}">Inicio</a></li>
                 </ul>
+                </form> 
+                <br>    
             </form>
         </div>
         <br>
