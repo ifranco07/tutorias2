@@ -1,5 +1,3 @@
-<!-- templates/interview/initial_interview_form.html -->
-
 {% extends 'base.html' %}
 {% block title %}Llenar Entrevista Inicial{% endblock %}
 
@@ -7,7 +5,31 @@
     <div class="form-spacing"></div> 
     <h2>Llenar Entrevista Inicial</h2>
 
-    {% if not interview_exists %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if interview_exists %}
+        {% if interview_active %}
+            <p>La entrevista está activa. Puedes modificar tus respuestas.</p>
+            <form method="post" class="interview-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn-submit">Guardar Cambios</button>
+            </form>
+        {% else %}
+            <p>La entrevista inicial ha sido completada. Solo puedes ver tus respuestas.</p>
+            <form method="post" class="interview-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <!-- No mostrar el botón de guardar si la entrevista está completada -->
+            </form>
+        {% endif %}
+    {% else %}
         <!-- Floating Message Container -->
         <div class="floating-message">
             <p>Por favor, completa todos los campos de la entrevista inicial. Asegúrate de proporcionar información precisa y detallada.</p>
@@ -25,12 +47,6 @@
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn-submit">Guardar Entrevista</button>
-        </form>
-    {% else %}
-        <p>Ya has llenado tu entrevista inicial.</p>
-        <form method="post" class="interview-form">
-            {% csrf_token %}
-            {{ form.as_p }}
         </form>
     {% endif %}
 {% endblock %}

@@ -21,4 +21,5 @@ urlpatterns = [
     path('solicitar/', alumno_view, name='ruta_alumno'),
     path('revisar/', tutor_view, name='ruta_tutor'),
     path('revisar/justificante/<int:justificante_id>/', revisar_justificante_view, name='ruta_para_revisar_justificante'),
+    path('vocational/', include('apps.vocational.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
