@@ -33,7 +33,7 @@ def reporte_tutoria(request):
         reporte.save()
 
         # Redirigir a una página de éxito o a donde necesites después de guardar
-        return redirect('success')  # Reemplazar 'success' con la URL a donde deseas redirigir
+        return redirect('home.html')  # Reemplazar 'success' con la URL a donde deseas redirigir
 
     else:
         tutor = request.user.professor  
