@@ -1,11 +1,18 @@
-<!-- reporte_tutorias/templates/reporte_tutorias/success.html -->
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="{% static 'css/success.css' %}"/>
     <title>Éxito</title>
 </head>
 <body>
-    <h1>Reporte guardado con éxito</h1>
-    <p>Su reporte de tutoría ha sido guardado correctamente.</p>
+    <h1>Reporte enviado con éxito</h1>
+    <p>Su reporte de tutoría ha sido enviado correctamente.</p>
+    <div class="links-container">
+        <ul>
+            <li><a href="{% url 'home' %}">Regresar al Inicio</a></li>
+            <li><a href="{% url 'reporte_tutoria:reporte_tutorias' %}">Reporte de Tutoria</a></li>
+        </ul>
+    </div>
 </body>
 </html>
