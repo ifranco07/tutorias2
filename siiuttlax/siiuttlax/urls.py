@@ -12,6 +12,7 @@ urlpatterns = [
     path('', include('apps.user_profile.urls')),
     path('', include('apps.academy.urls')),
     path('', include('apps.interview.urls')),
+    path('', include('apps.testvak.urls')),
     path('', include('apps.group.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 
