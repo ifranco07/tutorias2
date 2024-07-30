@@ -9,33 +9,39 @@
 
 {% block content %}
 <div class="content-container">
-    <div class="periodo-select">
-        <select>
-            <option value="">Selecciona un periodo</option>
-            {% for period in periods %}
-                <option value="{{ period.id }}">{{ period.period }}: {{ period.year }} </option>
-            {% endfor %}
-        </select>
-    </div>
-    <div class="grupo-scroll-container">
-        <div class="grupo-container">
-            {% for grupo in grupos %}
-                <div class="grupo-item">
-                    <div class="info-container">
-                        <p><strong>Tutor:</strong> {{ grupo.Tutor }}</p>
-                        <p><strong>Grupo:</strong> {{ grupo.Grupo }}</p>
-                        <p><strong>Cuatrimestre:</strong> {{ grupo.Cuatrimestre }}</p>
+    <div class="scroll-container">
+        <div class="periodo-select">
+            <form method="get" action="{% url 'consultas_por_periodo' current_period.id %}">
+                <select name="periodo" onchange="if(this.value) { window.location.href='{% url 'consultas_por_periodo' 0 %}'.replace('0', this.value); }">
+                    <option value="">Selecciona un periodo</option>
+                    {% for period in periods %}
+                        <option value="{{ period.id }}" {% if period.id == current_period.id %}selected{% endif %}>
+                            {{ period.period }}: {{ period.year }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+        <div class="grupo-scroll-container">
+            <div class="grupo-container">
+                {% for grupo in grupos %}
+                    <div class="grupo-item">
+                        <div class="info-container">
+                            <p><strong>Tutor:</strong> {{ grupo.Tutor }}</p>
+                            <p><strong>Grupo:</strong> {{ grupo.Grupo }}</p>
+                            <p><strong>Cuatrimestre:</strong> {{ grupo.Cuatrimestre }}</p>
+                        </div>
+                        <div class="actividades-container">
+                            <ul class="lista-actividades">
+                                <li>Actividad 1: {{ grupo.Actividad1 }}</li>
+                                <li>Actividad 2: {{ grupo.Actividad2 }}</li>
+                                <li>Actividad 3: {{ grupo.Actividad3 }}</li>
+                                <li>Actividad 4: {{ grupo.Actividad4 }}</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="actividades-container">
-                        <ul class="lista-actividades">
-                            <li>Actividad 1: {{ grupo.Actividad1 }}</li>
-                            <li>Actividad 2: {{ grupo.Actividad2 }}</li>
-                            <li>Actividad 3: {{ grupo.Actividad3 }}</li>
-                            <li>Actividad 4: {{ grupo.Actividad4 }}</li>
-                        </ul>
-                    </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
