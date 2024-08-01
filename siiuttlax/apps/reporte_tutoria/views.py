@@ -15,12 +15,11 @@ def reporte_tutoria(request):
         nombre_actividad = request.POST.get('nombre_actividad')
         objetivo_actividad = request.POST.get('objetivo_actividad')
         descripcion_actividad = request.POST.get('descripcion_actividad')
-        # evidencias = request.FILES.get('evidencias')
-        evidencia_fotografica = request.FILES.get('evidencias')
-        evidencia_lista_asistencia = request.FILES.get('lista_asistencia')
-        evidencia_audio = request.FILES.get('evidencias')
-        evidencia_canalizacion_alumno = request.FILES.get('evidencias')
-
+        evidencia_fotografica = request.FILES.get('evidencia_fotografica')
+        evidencia_lista_asistencia = request.FILES.get('evidencia_lista_asistencia')
+        evidencia_audio = request.FILES.get('evidencia_audio')
+        evidencia_canalizacion_alumno = request.FILES.get('evidencia_canalizacion_alumno')
+       
         reporte = ReporteTutoria(
             fecha_tutoria=fecha_tutoria,
             carrera_id=carrera_id,
@@ -29,7 +28,6 @@ def reporte_tutoria(request):
             nombre_actividad=nombre_actividad,
             objetivo_actividad=objetivo_actividad,
             descripcion_actividad=descripcion_actividad,
-            # evidencias=evidencias,
             evidencia_fotografica=evidencia_fotografica,
             evidencia_lista_asistencia=evidencia_lista_asistencia,
             evidencia_audio=evidencia_audio,
