@@ -95,9 +95,9 @@
                 </div>
                 <br>
                 <div>
-                    <label for="semestre">Semestre:</label>
+                    <label for="semestre">Cuatrimestre:</label>
                     <select id="semestre" disabled>
-                        <option value="">Selecciona el semestre</option>
+                        <option value="">Selecciona el Cuatrimestre</option>
                         {% for cuatrimestre in reporte.semestres %}
                             <option value="{{ cuatrimestre.id }}" {% if cuatrimestre.id == default_semestre %} selected {% endif %}>{{ cuatrimestre.semester }}</option>
                         {% endfor %}
