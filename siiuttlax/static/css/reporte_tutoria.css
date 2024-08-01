@@ -1,0 +1,259 @@
+/* Estilos del navbar */
+nav {
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 4rem;
+    padding: 0 0.625rem;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+nav .logo {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+
+nav img {
+    width: auto;
+    height: 1.875rem;
+}
+
+nav h1 {
+    font-size: 1.4375rem;
+    font-weight: 500;
+    margin-left: 1.25rem;
+}
+
+nav .navigation {
+    max-width: 40rem;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    margin-left: auto;
+    align-items: center;
+}
+
+nav .navigation li {
+    position: relative;
+    transition: all 0.5s ease;
+    flex-grow: 1;
+    user-select: none;
+    width: auto;
+}
+
+nav .navigation a {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    padding: 0.5625rem 0.9375rem;
+    color: black;
+    min-height: 4rem;
+    letter-spacing: 0.03rem;
+    text-decoration: none;
+    transition: all 0.7s ease;
+}
+
+nav .navigation a:hover {
+    background-position: 0;
+    color: #19bd66;
+}
+
+nav .navigation>li:hover>a {
+    background-position: 0;
+    color: #19bd66;
+}
+
+nav .subnavigation__wrapper {
+    overflow: hidden;
+    max-height: 0;
+    position: absolute;
+    transition: max-height 0.3s ease-in-out;
+    background-color: white;
+    width: auto;
+    white-space: nowrap;
+    font-size: 1rem;
+}
+
+nav .navigation li:hover .subnavigation__wrapper {
+    max-height: 50rem;
+    top: 4rem;
+    display: flex;
+    flex-direction: column;
+    color: #19bd66;
+}
+
+nav .navigation ul {
+    padding: 0;
+}
+
+nav .navigation li ul li a {
+    padding: 0.5rem 1rem;
+}
+
+nav ul li:hover .js-arrow {
+    transform: rotate(180deg);
+    transition: max-height all 0.5s ease;
+}
+
+button {
+    background: rgb(0, 0, 0);
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 0.625rem 1.4375rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    margin: 0.25rem 0.125rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 0.3125rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+button:hover {
+    background-color: #19bd66;
+    color: black;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos del body para centrar el contenido */
+body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    position: relative;
+}
+
+/* Estilos del contenedor hoja */
+.hoja {
+    width: 21cm; 
+    min-height: 29.7cm; 
+    padding: 2cm;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Asegura que el contenido interno esté centrado horizontalmente */
+    overflow: hidden;
+    margin-top: 4rem; /* Espacio suficiente para separar la barra de navegación */
+}
+
+/* Estilos para el header y footer */
+header, footer {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+header img, footer img {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Estilos para el formulario */
+.encabezado {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.encabezado h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 1cm;
+}
+
+.encabezado p {
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.encabezado input, .encabezado textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.encabezado input[type="date"] {
+    width: auto;
+}
+
+.encabezado button, .encabezado input[type="file"] {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+@media (max-width: 1500px) {
+    .hoja {
+        margin-top: 7rem; /* Ajustar el margen para dispositivos móviles si es necesario */
+    }
+}
+ 
+.hoja ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.hoja ul li {
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.hoja ul li a {
+    text-decoration: none;
+    background: rgb(0, 0, 0); /* Color de fondo */
+    color: rgb(241, 233, 233); /* Color del texto */
+    padding: 0.625rem 1.4375rem; /* Espaciado interno */
+    text-align: center;
+    display: inline-block; /* Permite padding y background-color en <a> */
+    font-size: 1rem; /* Tamaño de fuente */
+    margin: 0.25rem 0.25rem; /* Márgenes */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el enlace */
+    transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
+    border-radius: 0.4125rem; /* Bordes redondeados */
+    font-family: 'Poppins', sans-serif; /* Fuente */
+    border: none;
+}
+
+.hoja ul li a:hover {
+    background-color: #19bd66;
+    color: black;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.evidencia-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.evidencia-container div {
+    flex: 1 1 calc(50% - 1rem);
+}
+
+.evidencia-container label, .evidencia-container input {
+    width: 100%;
+}

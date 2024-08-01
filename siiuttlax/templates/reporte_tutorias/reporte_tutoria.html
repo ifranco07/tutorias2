@@ -11,7 +11,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/reporte_tutoria.css' %}"/>
     <title>Tutorías | {% block title %}{% endblock %}</title>
 </head>
 <body>
@@ -69,7 +69,9 @@
         <header>
             <img src="{% static 'img/Encabezado.jpg' %}" alt="Encabezado">
         </header>
-        
+        <ul>
+            <li><a href="{% url 'home' %}">Regresar al Inicio</a></li>
+        </ul>
         <div class="encabezado">
             <h1>REPORTE DE TUTORIA</h1>
             <br>
@@ -93,9 +95,9 @@
                 </div>
                 <br>
                 <div>
-                    <label for="semestre">Semestre:</label>
+                    <label for="semestre">Cuatrimestre:</label>
                     <select id="semestre" disabled>
-                        <option value="">Selecciona el semestre</option>
+                        <option value="">Selecciona el Cuatrimestre</option>
                         {% for cuatrimestre in reporte.semestres %}
                             <option value="{{ cuatrimestre.id }}" {% if cuatrimestre.id == default_semestre %} selected {% endif %}>{{ cuatrimestre.semester }}</option>
                         {% endfor %}
@@ -129,25 +131,27 @@
                     <textarea id="descripcion_actividad" name="descripcion_actividad" rows="6" placeholder="Descripción de la actividad" title="Descripción de la Actividad"></textarea>
                 </div>
 
-                <div>
-                    <label for="evidencia1" class="file-label">Evidencia de Imagen/Video:</label>
-                    <input type="file" id="evidencia1" name="evidencia1" accept=".png, .jpg, .jpeg, .mp4" title="Selecciona evidencia" data-description="Sube una imagen o un video.">
-            
-                    <label for="evidencia2" class="file-label">Evidencia en PDF de la lista de asistencia :</label>
-                    <input type="file" id="evidencia2" name="evidencia2" accept=".pdf" title="Selecciona evidencia adicional" data-description="Sube un archivo PDF.">
-            
-                    <label for="evidencia3" class="file-label">Evidencia de Audio de la lista de asistencia:</label>
-                    <input type="file" id="evidencia3" name="evidencia3" accept=".mp3" title="Selecciona evidencia adicional" data-description="Sube un archivo de audio en formato MP3.">
-            
-                    <label for="evidencia4" class="file-label">Evidencia en PDF del alumno canalizado:</label>
-                    <input type="file" id="evidencia4" name="evidencia4" accept=".pdf" title="Selecciona evidencia adicional" data-description="Sube otro archivo PDF de canalizacion de alumno.">
+                <div class="evidencia-container">
+                    <div>
+                        <label for="evidencia1" class="file-label">Evidencia de Imagen/Video:</label>
+                        <input type="file" id="evidencia1" name="evidencia_fotografica" accept=".png, .jpg, .jpeg, .mp4" title="Selecciona evidencia" data-description="Sube una imagen o un video.">
+                    </div>
+                    <div>
+                        <label for="evidencia2" class="file-label">Evidencia en PDF de la lista de asistencia:</label>
+                        <input type="file" id="evidencia2" name="evidencia_lista_asistencia" accept=".pdf" title="Selecciona evidencia adicional" data-description="Sube un archivo PDF.">
+                    </div>
+                    <div>
+                        <label for="evidencia3" class="file-label">Evidencia de Audio de la lista de asistencia:</label>
+                        <input type="file" id="evidencia3" name="evidencia_audio" accept=".mp3" title="Selecciona evidencia adicional" data-description="Sube un archivo de audio en formato MP3.">
+                    </div>
+                    <div>
+                        <label for="evidencia4" class="file-label">Evidencia PDF del alumno canalizado:</label>
+                        <input type="file" id="evidencia4" name="evidencia_canalizacion_alumno" accept=".pdf" title="Selecciona evidencia adicional" data-description="Sube otro archivo PDF de canalizacion de alumno.">
+                    </div>
                 </div>
 
                 <br>
                 <button type="submit" title="Enviar">Enviar</button>
-                <ul>
-                    <li><a href="{% url 'home' %}">Inicio</a></li>
-                </ul>
                 </form> 
                 <br>    
             </form>
