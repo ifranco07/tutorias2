@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from apps.period.models import Period
 from apps.group.models import Group
+from django.contrib.auth.decorators import login_required
 
+
+@login_required
 def index(request):
     periods = Period.objects.all()
     current_period = periods.first()  
@@ -17,6 +20,7 @@ def index(request):
     ]
     return render(request, 'cumplimiento/consultas.html', {'periods': periods, 'current_period': current_period, 'grupos': grupos_data})
 
+@login_required
 def consultas_por_periodo(request, periodo_id):
     period = get_object_or_404(Period, id=periodo_id)
     grupos = Group.objects.filter(period=period)
