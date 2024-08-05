@@ -13,6 +13,23 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'css/reporte_tutoria.css' %}"/>
     <title>Tutorías | {% block title %}{% endblock %}</title>
+    <script>
+        function validateForm() {
+            let fecha = document.getElementById("fecha").value;
+            let nombreActividad = document.getElementById("nombre_actividad").value;
+            let objetivoActividad = document.getElementById("objetivo_actividad").value;
+            let descripcionActividad = document.getElementById("descripcion_actividad").value;
+            let evidencia1 = document.getElementById("evidencia1").value;
+            let evidencia2 = document.getElementById("evidencia2").value;
+            let evidencia3 = document.getElementById("evidencia3").value;
+
+            if (!fecha || !nombreActividad || !objetivoActividad || !descripcionActividad || !evidencia1 || !evidencia2 || !evidencia3) {
+                alert("Por favor, complete todos los campos requeridos.");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
     <nav>

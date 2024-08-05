@@ -1,5 +1,6 @@
 from datetime import date
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from apps.career.models import Career
 from apps.period.models import Semester
 from apps.group.models import Group
@@ -19,6 +20,11 @@ def reporte_tutoria(request):
         evidencia_lista_asistencia = request.FILES.get('evidencia_lista_asistencia')
         evidencia_audio = request.FILES.get('evidencia_audio')
         evidencia_canalizacion_alumno = request.FILES.get('evidencia_canalizacion_alumno')
+
+        if not (fecha_tutoria and nombre_actividad and objetivo_actividad and descripcion_actividad and evidencia_fotografica and evidencia_lista_asistencia and evidencia_audio):
+            messages.error(request, 'Por favor, complete todos los campos requeridos.')
+            return redirect('reporte_tutoria:reporte_tutorias')
+
        
         reporte = ReporteTutoria(
             fecha_tutoria=fecha_tutoria,
