@@ -132,3 +132,16 @@ body {
         width: calc(100% - 20px); /* Para pantallas pequeñas */
     }
 }
+
+.info-estatica {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.info-estatica p {
+    margin: 5px 0;
+    font-size: 16px;
+}
