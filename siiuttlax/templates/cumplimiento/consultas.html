@@ -33,10 +33,9 @@
                         </div>
                         <div class="actividades-container">
                             <ul class="lista-actividades">
-                                <li>Actividad 1: {{ grupo.Actividad1 }}</li>
-                                <li>Actividad 2: {{ grupo.Actividad2 }}</li>
-                                <li>Actividad 3: {{ grupo.Actividad3 }}</li>
-                                <li>Actividad 4: {{ grupo.Actividad4 }}</li>
+                                {% for actividad in grupo.Actividades %}
+                                    <li>{{ actividad }}</li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
