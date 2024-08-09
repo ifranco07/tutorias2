@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from datetime import date
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -21,7 +22,7 @@ def reporte_tutoria(request):
         evidencia_audio = request.FILES.get('evidencia_audio')
         evidencia_canalizacion_alumno = request.FILES.get('evidencia_canalizacion_alumno')
 
-        if not (fecha_tutoria and nombre_actividad and objetivo_actividad and descripcion_actividad and evidencia_fotografica and evidencia_lista_asistencia and evidencia_audio):
+        if not (fecha_tutoria and nombre_actividad and objetivo_actividad and descripcion_actividad and evidencia_fotografica and evidencia_lista_asistencia):
             messages.error(request, 'Por favor, complete todos los campos requeridos.')
             return redirect('reporte_tutoria:reporte_tutorias')
 
@@ -65,3 +66,8 @@ def reporte_tutoria(request):
     
 def success_view(request):
     return render(request, 'reporte_tutorias/success.html')
+
+@login_required
+def mis_reportes(request):
+    reportes = ReporteTutoria.objects.filter(tutor=request.user.professor).order_by('-fecha_tutoria', 'nombre_actividad')
+    return render(request, 'reporte_tutorias/mis_reportes.html', {'reportes': reportes})
