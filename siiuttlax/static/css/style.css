@@ -1,22 +1,80 @@
+/* Reset de márgenes y paddings */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Estilos generales */
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: rgb(240, 240, 240);
+    min-height: 100vh;
+    background-color: #f0f0f0;
 }
 
-body::-webkit-scrollbar {
-    display: none;
+/* Estilos para la hoja de reporte */
+.hoja {
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 2cm;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    position: relative;
 }
 
+header, footer {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+header img, footer img {
+    width: 100%;
+    max-width: 100%;
+}
+
+.encabezado {
+    margin: 20px 0; /* Espacio entre el contenido y el header/footer */
+}
+
+.encabezado h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 1cm;
+}
+
+.encabezado p {
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.encabezado input, .encabezado textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.encabezado input[type="date"] {
+    width: auto;
+}
+
+.encabezado button, .encabezado input[type="file"] {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+/* Estilos del navbar */
 nav {
     background: white;
     display: flex;
@@ -29,24 +87,24 @@ nav {
     z-index: 1000;
 }
 
-.logo {
+nav .logo {
     display: flex;
     align-items: center;
     margin-right: auto;
 }
 
-img {
+nav img {
     width: auto;
     height: 1.875rem;
 }
 
-h1 {
+nav h1 {
     font-size: 1.4375rem;
     font-weight: 500;
     margin-left: 1.25rem;
 }
 
-.navigation {
+nav .navigation {
     max-width: 40rem;
     width: auto;
     display: flex;
@@ -56,16 +114,19 @@ h1 {
     align-items: center;
 }
 
-.navigation li {
+nav .navigation li {
     position: relative;
     transition: all 0.5s ease;
     flex-grow: 1;
-    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
     width: auto;
 }
 
-.navigation a {
-    font-family: "Poppins", sans-serif;
+nav .navigation a {
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 1rem;
     display: flex;
@@ -80,17 +141,17 @@ h1 {
     transition: all 0.7s ease;
 }
 
-.navigation a:hover {
+nav .navigation a:hover {
     background-position: 0;
     color: #19bd66;
 }
 
-.navigation>li:hover>a {
+nav .navigation>li:hover>a {
     background-position: 0;
     color: #19bd66;
 }
 
-.subnavigation__wrapper {
+nav .subnavigation__wrapper {
     overflow: hidden;
     max-height: 0;
     position: absolute;
@@ -101,7 +162,7 @@ h1 {
     font-size: 1rem;
 }
 
-.navigation li:hover .subnavigation__wrapper {
+nav .navigation li:hover .subnavigation__wrapper {
     max-height: 50rem;
     top: 4rem;
     display: flex;
@@ -109,15 +170,15 @@ h1 {
     color: #19bd66;
 }
 
-.navigation ul {
-    padding: 0; 
+nav .navigation ul {
+    padding: 0;
 }
 
-.navigation li ul li a {
+nav .navigation li ul li a {
     padding: 0.5rem 1rem;
 }
 
-ul li:hover .js-arrow {
+nav ul li:hover .js-arrow {
     transform: rotate(180deg);
     transition: max-height all 0.5s ease;
 }
@@ -135,7 +196,7 @@ button {
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     border-radius: 0.3125rem;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 button:hover {
@@ -143,8 +204,6 @@ button:hover {
     color: black;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
 }
-
-
 
 /* Estilos para el formulario de entrevista inicial */
 .interview-form {
@@ -191,7 +250,6 @@ button:hover {
 .interview-form textarea {
     resize: vertical;
     height: 120px; /* Ajustar la altura del área de texto */
-    
 }
 
 .interview-form .btn-submit {
@@ -272,7 +330,6 @@ button:hover {
     cursor: not-allowed;
 }
 
-
 /* Botón de Éxito */
 .update-profile-form button.success {
     background-color: #28a745;
@@ -287,7 +344,7 @@ button:hover {
     height: 600px;
 }
 
-/*Estilos perfil estudiante
+/* Estilos perfil estudiante */
 /* Contenedor principal del dashboard */
 .dashboard-container {
     display: flex;
@@ -345,8 +402,6 @@ button:hover {
     margin-bottom: 10px;
 }
 
-/* CSS (styles.css) */
-
 /* Estilos para el contenedor del mensaje flotante */
 .floating-message {
     position: fixed;
@@ -363,5 +418,19 @@ button:hover {
     text-align: center;
 }
 
+/* Estilos específicos para el botón de reactivación */
+.btn-reactivate {
+    background-color: #21bb18; /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    padding: 0.5rem 1rem; /* Espaciado interno del botón */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    font-size: 14px; /* Tamaño de la fuente */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave para el cambio de color */
+}
 
-
+.btn-reactivate:hover {
+    background-color: #00e68a; /* Color de fondo en hover */
+    color: black; /* Color del texto en hover */
+}

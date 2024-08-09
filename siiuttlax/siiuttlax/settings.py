@@ -12,6 +12,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,8 +34,12 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # local Apps
+    'apps.vocational.apps.VocationalConfig',
+    'apps.library.apps.LibraryConfig',
+    
 
     'apps.seguimiento.apps.SeguimientoConfig',
+    'apps.reporte_tutoria.apps.ReporteTutoriaConfig',
 
     'apps.justify.apps.JustifyConfig',
 
@@ -46,6 +52,7 @@ INSTALLED_APPS = [
     'apps.academy.apps.AcademyConfig',
     'apps.user_profile.apps.UserProfileConfig', 
     'apps.interview.apps.InterviewConfig', 
+    'apps.testvak.apps.VAKInterviewConfig', 
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -142,7 +149,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static'] # Comment in production
 #STATIC_ROOT = BASE_DIR / 'static' # Uncomment in production
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
