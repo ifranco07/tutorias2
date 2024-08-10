@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Análisis de Cumplimiento de tutoria{% endblock %}
+{% block title %}Análisis de Cumplimiento de Tutoría{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/cumplimiento.css' %}">
@@ -42,6 +42,7 @@
             <p><strong>Director de Carrera:</strong> Jose Manuel</p>
             <p><strong>Coordinadora de Tutoría:</strong> Gabriela</p>
         </div>
+
         <div class="grupo-scroll-container">
             <div class="grupo-container">
                 {% for grupo in grupos %}
@@ -54,9 +55,21 @@
                         </div>
                         <div class="actividades-container">
                             <ul class="lista-actividades">
-                                {% for actividad in grupo.Actividades %}
-                                    <li>{{ actividad }}</li>
-                                {% endfor %}
+                                {% if grupo.Actividades.0.evidencia_lista_asistencia or grupo.Actividades.0.evidencia_canalizacion_alumno %}
+                                    {% for actividad in grupo.Actividades %}
+                                        <li>
+                                            {{ actividad.nombre_actividad }}
+                                            {% if actividad.evidencia_lista_asistencia %}
+                                                <br><a href="{{ actividad.evidencia_lista_asistencia }}" target="_blank">Evidencia Lista de Asistencia</a>
+                                            {% endif %}
+                                            {% if actividad.evidencia_canalizacion_alumno %}
+                                                <br><a href="{{ actividad.evidencia_canalizacion_alumno }}" target="_blank">Evidencia Canalización de Alumno</a>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                {% else %}
+                                    <li>No hay reportes existentes.</li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>

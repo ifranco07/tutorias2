@@ -39,8 +39,16 @@ def consultas_por_periodo(request, periodo_id):
                 continue  # Si no hay reportes en el mes, pasar al siguiente grupo
         
         actividades = ReporteTutoria.objects.filter(grupo=grupo)
-        actividades_nombres = [actividad.nombre_actividad for actividad in actividades] if actividades.exists() else []
-        actividades_completas = actividades_nombres + ['No reportado'] * (num_actividades_esperadas - len(actividades_nombres))
+        actividades_data = []
+        
+        for actividad in actividades:
+            actividades_data.append({
+                'nombre_actividad': actividad.nombre_actividad,
+                'evidencia_lista_asistencia': actividad.evidencia_lista_asistencia.url if actividad.evidencia_lista_asistencia else None,
+                'evidencia_canalizacion_alumno': actividad.evidencia_canalizacion_alumno.url if actividad.evidencia_canalizacion_alumno else None
+            })
+        
+        actividades_completas = actividades_data + [{'nombre_actividad': 'No reportado', 'evidencia_lista_asistencia': None, 'evidencia_canalizacion_alumno': None}] * (num_actividades_esperadas - len(actividades_data))
         
         grupos_data.append({
             'Cuatrimestre': grupo.semester.semester_name,
