@@ -1,3 +1,22 @@
+/* Reset de márgenes y paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header, footer {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+header img, footer img {
+    width: 100%;
+    max-width: 100%;
+}
+
 /* Estilos del navbar */
 nav {
     background: white;
@@ -42,7 +61,10 @@ nav .navigation li {
     position: relative;
     transition: all 0.5s ease;
     flex-grow: 1;
-    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
     width: auto;
 }
 
@@ -128,7 +150,6 @@ button:hover {
 
 /* Estilos del body para centrar el contenido */
 body {
-    font-family: 'Times New Roman', Times, serif;
     margin: 0;
     padding: 0;
     display: flex;

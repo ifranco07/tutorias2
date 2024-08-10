@@ -11,6 +11,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/reporte_tutoria.css' %}"/>
     <title>Tutorías | {% block title %}{% endblock %}</title>
     <script>
@@ -60,10 +61,7 @@
                 </a>
                 <div class="subnavigation__wrapper">
                     <ul>
-                        <li><a href="{% url 'update_profile' %}">Actualizar Usuario</a></li>
-                        <li><a href="{% url 'update_perfil' %}">Actualizar Perfil</a></li>
-                        <li><a href="{% url 'students_list' %}">Lista de estudiantes</a></li>
-                        <li><a href="{% url 'reporte_tutoria:reporte_tutorias' %}">Reportes de Tutoria</a></li>
+                        <li><a href="{% url 'reporte_tutoria:mis_reportes' %}">Mis Reportes de Tutoria</a></li>
                     </ul>
                 </div>
             </li>
@@ -85,9 +83,6 @@
         <header>
             <img src="{% static 'img/Encabezado.jpg' %}" alt="Encabezado">
         </header>
-        <ul>
-            <li><a href="{% url 'home' %}">Regresar al Inicio</a></li>
-        </ul>
         <div class="encabezado">
             <h1>REPORTE DE TUTORIA</h1>
             <br>
@@ -153,11 +148,11 @@
                         <input type="file" id="evidencia1" name="evidencia_fotografica" accept=".png, .jpg, .jpeg, .mp4" title="Selecciona evidencia" data-description="Sube una imagen o un video.">
                     </div>
                     <div>
-                        <label for="evidencia2" class="file-label">Evidencia en PDF de la lista de asistencia:</label>
+                        <label for="evidencia2" class="file-label">Evidencia PDF de la lista de asistencia:</label>
                         <input type="file" id="evidencia2" name="evidencia_lista_asistencia" accept=".pdf" title="Selecciona evidencia adicional" data-description="Sube un archivo PDF.">
                     </div>
                     <div>
-                        <label for="evidencia3" class="file-label">Evidencia de Audio de la lista de asistencia:</label>
+                        <label for="evidencia3" class="file-label">Evidencia de Audio lista de asistencia:</label>
                         <input type="file" id="evidencia3" name="evidencia_audio" accept=".mp3" title="Selecciona evidencia adicional" data-description="Sube un archivo de audio en formato MP3.">
                     </div>
                     <div>

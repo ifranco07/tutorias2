@@ -3,26 +3,82 @@
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <head>
-    <link rel="stylesheet" href="{% static 'css/mis_reportes.css' %}" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200&family=Comfortaa:wght@300;400;500&family=Didact+Gothic&family=Nova+Square&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/mis_reportes.css' %}"/>
 </head>
-
 <body>
+    <nav>
+        <div class="logo">
+            <img src="{% static 'img/logoUTT.png' %}" alt="Logo"/>
+            <h1>Sistema Integral de Tutorías</h1>
+        </div>
+    
+        <ul class="navigation">
+            <li><a href="{% url 'home' %}">Inicio</a></li>
+            
+            <li>
+                <a href="#">
+                    UTT
+                    <i class='bx bxs-chevron-down js-arrow'></i>
+                </a>
+                <div class="subnavigation__wrapper">
+                    <ul>
+                        <li><a href="#">Página UTT</a></li>
+                        <li><a href="#">EVAUTT</a></li>
+                        <li><a href="#">SAIIUTT</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="#">
+                    Tutoría
+                    <i class='bx bxs-chevron-down js-arrow'></i>
+                </a>
+                <div class="subnavigation__wrapper">
+                    <ul>
+                        <li><a href="{% url 'reporte_tutoria:reporte_tutorias' %}">Reportes de Tutoria</a></li>
+                    </ul>
+                </div>
+            </li>
+    
+            {% if user.is_authenticated %}
+                <li>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">Cerrar sesión</button>
+                    </form>
+                </li>
+            {% else %}
+                <li><a href="{% url 'login' %}" class="btn">Iniciar sesión</a></li>
+            {% endif %}
+        </ul>
+    </nav>
     <div class="container">
         <h1>Mis Reportes de Tutoría</h1>
         <table>
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Fecha de Tutoria</th>
                     <th>Nombre de la Actividad de Tutoría</th>
+                    <th>Objetivo de la Actividad de Tutoría</th>
+                    <th>Descripcion de la Actividad de Tutoría</th>
                 </tr>
             </thead>
             <tbody>
                 {% for reporte in reportes %}
                 <tr>
+                    <td>{{ forloop.counter }}</td>
                     <td>{{ reporte.fecha_tutoria }}</td>
                     <td>{{ reporte.nombre_actividad }}</td>
+                    <td>{{ reporte.objetivo_actividad }}</td>
+                    <td>{{ reporte.descripcion_actividad }}</td>
                 </tr>
                 {% empty %}
                 <tr>
@@ -32,9 +88,6 @@
                 {% endfor %}
             </tbody>
         </table>
-        <ul>
-            <li><a href="{% url 'home' %}">Regresar al Inicio</a></li>
-        </ul>   
     </div>  
 </body>
 </html>
