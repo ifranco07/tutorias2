@@ -40,7 +40,6 @@
 
         <ul class="navigation">
             <li><a href="{% url 'home' %}">Inicio</a></li>
-            
             <li>
                 <a href="#">
                     UTT
@@ -54,18 +53,9 @@
                     </ul>
                 </div>
             </li>
-            <li>
-                <a href="#">
-                    Tutoría
-                    <i class='bx bxs-chevron-down js-arrow'></i>
-                </a>
-                <div class="subnavigation__wrapper">
-                    <ul>
-                        <li><a href="{% url 'reporte_tutoria:mis_reportes' %}">Mis Reportes de Tutoria</a></li>
-                    </ul>
-                </div>
+                  <a href="{% url 'reporte_tutoria:mis_reportes' %}">Reportes de Tutoria</a>
             </li>
-
+            
             {% if user.is_authenticated %}
                 <li>
                     <form action="{% url 'logout' %}" method="post">
@@ -86,14 +76,12 @@
         <div class="encabezado">
             <h1>REPORTE DE TUTORIA</h1>
             <br>
-
             <form method="post" action="" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div>
                     <label for="fecha">Fecha de Tutoria:</label>
                     <input type="date" id="fecha" name="fecha" value="{{ fecha_tutoria|date:"Y-m-d" }}" title="Fecha de Tutoria">
                 </div>
-
                 <div>
                     <label for="carrera">Carrera:</label>
                     <select id="carrera" disabled>
@@ -172,11 +160,6 @@
         <footer>
             <img src="{% static 'img/Footer.jpg' %}" alt="Pie de página">
         </footer>
-    </div>
-
-    <div class="container">
-        {% block content %}
-        {% endblock %}
     </div>
 </body>
 </html>

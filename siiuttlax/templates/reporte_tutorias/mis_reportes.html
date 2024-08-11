@@ -35,18 +35,8 @@
                     </ul>
                 </div>
             </li>
-            <li>
-                <a href="#">
-                    Tutoría
-                    <i class='bx bxs-chevron-down js-arrow'></i>
-                </a>
-                <div class="subnavigation__wrapper">
-                    <ul>
-                        <li><a href="{% url 'reporte_tutoria:reporte_tutorias' %}">Reportes de Tutoria</a></li>
-                    </ul>
-                </div>
+                 <a href="{% url 'reporte_tutoria:reporte_tutorias' %}">Reporte de Tutoria</a>
             </li>
-    
             {% if user.is_authenticated %}
                 <li>
                     <form action="{% url 'logout' %}" method="post">
@@ -68,7 +58,6 @@
                     <th>Fecha de Tutoria</th>
                     <th>Nombre de la Actividad de Tutoría</th>
                     <th>Objetivo de la Actividad de Tutoría</th>
-                    <th>Descripcion de la Actividad de Tutoría</th>
                 </tr>
             </thead>
             <tbody>
@@ -78,7 +67,6 @@
                     <td>{{ reporte.fecha_tutoria }}</td>
                     <td>{{ reporte.nombre_actividad }}</td>
                     <td>{{ reporte.objetivo_actividad }}</td>
-                    <td>{{ reporte.descripcion_actividad }}</td>
                 </tr>
                 {% empty %}
                 <tr>
