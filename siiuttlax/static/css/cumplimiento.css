@@ -1,0 +1,200 @@
+/* Estilo general para el body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+/* Contenedor principal para el contenido */
+.content-container {
+    padding: 20px;
+}
+
+/* Estilo para el contenedor de selección del periodo */
+.periodo-select {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.periodo-select select {
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.periodo-select select:focus {
+    border-color: #007bff;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.25);
+}
+
+/* Contenedor de grupos con desplazamiento */
+.grupo-scroll-container {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 10px 0;
+}
+
+.grupo-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en líneas */
+    gap: 30px; /* Espacio entre los elementos */
+    justify-content: space-between; /* Distribuye los elementos con espacio entre ellos */
+}
+
+.grupo-item {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    margin-bottom: 10px;
+    flex-grow: 1;
+}
+
+@media (min-width: 600px) {
+    .grupo-item {
+        width: calc(50% - 10px);
+    }
+}
+
+@media (min-width: 900px) {
+    .grupo-item {
+        width: calc(33.33% - 20px);
+    }
+}
+
+/* Estilo para el contenedor de información dentro de grupo-item */
+.info-container {
+    flex: 1;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.info-container p {
+    margin: 5px 0;
+}
+
+/* Estilo para el contenedor de actividades dentro de grupo-item */
+.actividades-container {
+    flex: 1;
+}
+
+/* Estilo para el contenedor de listas de actividades */
+.lista-actividades {
+    background-color: #e9e9e9;
+    padding: 5px;
+    border-radius: 10px;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.lista-actividades li {
+    background-color: #ffffff;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 1200px) {
+    .grupo-item {
+        width: calc(50% - 20px); /* Para pantallas medianas */
+    }
+}
+
+/* Media query para pantallas aún más pequeñas */
+@media (max-width: 768px) {
+    .grupo-item {
+        width: calc(100% - 20px); /* Para pantallas pequeñas */
+    }
+}
+
+.info-estatica {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.info-estatica p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.lista-actividades li {
+    margin-bottom: 10px;
+}
+
+.lista-actividades li a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.lista-actividades li a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.lista-actividades li a::before {
+    content: "📎 ";
+    color: #007BFF;
+}
+
+.lista-actividades li a::after {
+    content: " ↗";
+    font-size: 0.8em;
+    color: #888;
+}
+
+.grupo-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-container p {
+    margin: 5px 0;
+}
+
+.actividades-container ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.lista-actividades li {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

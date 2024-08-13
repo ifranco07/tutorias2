@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 # Importaciones de las vistas personalizadas
 from apps.justify.views import CustomLoginView, alumno_view, tutor_view, revisar_justificante_view
+from apps.cumplimiento.views import index, consultas_por_periodo
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -16,6 +17,9 @@ urlpatterns = [
     path('', include('apps.group.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 
+    path('consulta', index, name='index'),
+    path('consultas/<int:periodo_id>/', consultas_por_periodo, name='consultas_por_periodo'),
+    path('seguimiento/',include('apps.seguimiento.urls')),
     path('reporte_tutoria/', include('apps.reporte_tutoria.urls', namespace='reporte_tutoria')),
     path('seguimiento/', include('apps.seguimiento.urls')),
     path('login/', CustomLoginView.as_view(), name='login'),
