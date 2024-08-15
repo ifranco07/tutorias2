@@ -90,6 +90,11 @@
                                 Reportes de Tutoria
                             </a>
                         </li>
+                        <li>
+                            <a href="{% url 'reporte_tutoria:canalizacion_alumno' %}">
+                                Canalizacion alumno
+                            </a>
+                        </li>
                         {% if user.is_authenticated %}
                             {% if user_type == 'profesor' %}
                                 <li><a href="{% url 'update_profile' %}">Actualizar Usuario</a></li>

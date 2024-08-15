@@ -14,22 +14,6 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/reporte_tutoria.css' %}"/>
     <title>Tutorías | {% block title %}{% endblock %}</title>
-    <script>
-        function validateForm() {
-            let fecha = document.getElementById("fecha").value;
-            let nombreActividad = document.getElementById("nombre_actividad").value;
-            let objetivoActividad = document.getElementById("objetivo_actividad").value;
-            let descripcionActividad = document.getElementById("descripcion_actividad").value;
-            let evidencia1 = document.getElementById("evidencia1").value;
-            let evidencia2 = document.getElementById("evidencia2").value;
-
-            if (!fecha || !nombreActividad || !objetivoActividad || !descripcionActividad || !evidencia1 || !evidencia2 || !evidencia3) {
-                alert("Por favor, complete todos los campos requeridos.");
-                return false;
-            }
-            return true;
-        }
-    </script>
 </head>
 <body>
     <nav>
@@ -70,23 +54,16 @@
     </nav>
 
     <div class="hoja">
-        <header>
-            <img src="{% static 'img/Encabezado.jpg' %}" alt="Encabezado">
-        </header>
         <div class="encabezado">
-            <h1>REPORTE DE TUTORIA</h1>
+            <h1>Canalizacion del Alumno</h1>
             <br>
             <form method="post" action="" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div>
-                    <label for="fecha">Fecha de Tutoria:</label>
-                    <input type="date" id="fecha" name="fecha" value="{{ fecha_tutoria|date:"Y-m-d" }}" title="Fecha de Tutoria">
-                </div>
-                <div>
                     <label for="carrera">Carrera:</label>
                     <select id="carrera" disabled>
                         <option value="">Seleccione una carrera</option>
-                        {% for carrera in reporte.carreras %}
+                        {% for carrera in canalizacion.carreras %}
                             <option value="{{ carrera.id }}" {% if carrera.id == default_carrera %} selected {% endif %}>{{ carrera.short_name }}</option>
                         {% endfor %}
                     </select>
@@ -97,7 +74,7 @@
                     <label for="semestre">Cuatrimestre:</label>
                     <select id="semestre" disabled>
                         <option value="">Selecciona el Cuatrimestre</option>
-                        {% for cuatrimestre in reporte.semestres %}
+                        {% for cuatrimestre in canalizacion.semestres %}
                             <option value="{{ cuatrimestre.id }}" {% if cuatrimestre.id == default_semestre %} selected {% endif %}>{{ cuatrimestre.semester }}</option>
                         {% endfor %}
                     </select>
@@ -108,43 +85,19 @@
                     <label for="grupo">Grupo:</label>
                     <select id="grupo" disabled>
                         <option value="">Selecciona el grupo</option>
-                        {% for grupo in reporte.grupos %}
+                        {% for grupo in canalizacion.grupos %}
                             <option value="{{ grupo.id }}" {% if grupo.id == default_grupo %} selected {% endif %}>{{ grupo.group }}</option>
                         {% endfor %}
                     </select>
                     <input type="hidden" name="grupo" value="{{ default_grupo }}">
                 </div>
                 <br>
-                <div>
-                    <label for="nombre_actividad">Nombre de la Actividad:</label>
-                    <input type="text" id="nombre_actividad" name="nombre_actividad" placeholder="Nombre de la actividad" title="Nombre de la Actividad">
-                </div>
-
-                <div>
-                    <label for="objetivo_actividad">Objetivo de la Actividad:</label>
-                    <textarea id="objetivo_actividad" name="objetivo_actividad" rows="4" placeholder="Objetivo de la actividad" title="Objetivo de la Actividad"></textarea>
-                </div>
-
-                <div>
-                    <label for="descripcion_actividad">Descripción de la Actividad:</label>
-                    <textarea id="descripcion_actividad" name="descripcion_actividad" rows="6" placeholder="Descripción de la actividad" title="Descripción de la Actividad"></textarea>
-                </div>
-
                 <div class="evidencia-container">
-                    <div>
-                        <label for="evidencia1" class="file-label">Evidencia de Imagen/Video:</label>
-                        <input type="file" id="evidencia1" name="evidencia_fotografica" accept=".png, .jpg, .jpeg, .mp4" title="Selecciona evidencia" data-description="Sube una imagen o un video.">
-                    </div>
-                    <div>
-                        <label for="evidencia2" class="file-label">Evidencia PDF de la lista de asistencia:</label>
-                        <input type="file" id="evidencia2" name="evidencia_lista_asistencia" accept=".pdf" title="Selecciona evidencia adicional" data-description="Sube un archivo PDF.">
-                    </div>
-                    <div>
-                        <label for="evidencia3" class="file-label">Evidencia de Audio lista de asistencia:</label>
-                        <input type="file" id="evidencia3" name="evidencia_audio" accept=".mp3" title="Selecciona evidencia adicional" data-description="Sube un archivo de audio en formato MP3.">
+                    <div class="evidencia-container">
+                        <label for="evidencia4" class="file-label">Evidencia PDF del alumno canalizado:</label>
+                        <input type="file" id="evidencia4" name="evidencia_canalizacion_alumno" accept=".pdf" title="Selecciona evidencia adicional">
                     </div>
                 </div>
-
                 <br>
                 <button type="submit" title="Enviar">Enviar</button>
                 </form> 
@@ -152,10 +105,6 @@
             </form>
         </div>
         <br>
-
-        <footer>
-            <img src="{% static 'img/Footer.jpg' %}" alt="Pie de página">
-        </footer>
     </div>
 </body>
 </html>
