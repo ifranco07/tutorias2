@@ -4,7 +4,8 @@ from .models import ReporteTutoria
 
 class Reportes_Tutorias(admin.ModelAdmin):
     fields = ["fecha_tutoria",
-              "carrera","semestre",
+              "carrera",
+              "semestre",
               "grupo",
               "nombre_actividad",
               "objetivo_actividad",

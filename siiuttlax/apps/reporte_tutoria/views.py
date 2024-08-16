@@ -117,20 +117,26 @@ def canalizacion_alumno(request):
         semestre_id = request.POST.get('semestre')
         grupo_id = request.POST.get('grupo')
         student_id = request.POST.get('student')  # Obtener el estudiante seleccionado del formulario
+        evidencia_canalizacion_alumno = request.FILES.get('evidencia_canalizacion_alumno')
+
+        if not (evidencia_canalizacion_alumno):
+            messages.error(request, 'Por favor, complete todos los campos requeridos.')
+            return redirect('reporte_tutoria:canalizacion_alumno')
 
         # Crear la instancia de CanalizacionAlumno
         canalizacion = CanalizacionAlumno(
-            carrera_id=carrera_id,
-            semestre_id=semestre_id,
-            grupo_id=grupo_id,
-            student_id=student_id,  # Asignar el estudiante seleccionado
-            tutor=tutor
+            carrera_id = carrera_id,
+            semestre_id = semestre_id,
+            grupo_id = grupo_id,
+            student_id = student_id,  # Asignar el estudiante seleccionado
+            evidencia_canalizacion_alumno = evidencia_canalizacion_alumno,
+            tutor = tutor
         )
         canalizacion.save()
 
         # Redirigir o mostrar mensaje de éxito
         messages.success(request, 'Canalización del alumno registrada exitosamente.')
-        return redirect('nombre_de_la_vista_deseada')
+        return redirect('reporte_tutoria:canalizacion_exitosa') 
 
     context = {
         'canalizacion': {
@@ -144,3 +150,6 @@ def canalizacion_alumno(request):
         'students': students  # Pasar los estudiantes al contexto
     }
     return render(request, 'reporte_tutorias/canalizacion_alumno.html', context)
+
+def canalizacion_exitosa(request):
+    return render(request, 'reporte_tutorias/canalizacion_exitosa.html')

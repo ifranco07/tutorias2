@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/canalizacion_exitosa.css' %}"/>
+    <title>Éxito</title>
+</head>
+<body>
+    <h1>Canalizacion de alumno enviado con éxito</h1>
+    <p>La canalizacion del Alumno ha sido enviada correctamente.</p>
+    <div class="links-container">
+        <ul>
+            <li><a href="{% url 'home' %}">Regresar al Inicio</a></li>
+        </ul>
+    </div>
+</body>
+</html>

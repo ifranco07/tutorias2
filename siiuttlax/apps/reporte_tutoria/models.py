@@ -26,13 +26,13 @@ class ReporteTutoria(models.Model):
         ordering = ['-fecha_tutoria']
 
 class CanalizacionAlumno(models.Model):
+    fecha_creacion = models.DateField(auto_now_add=True, verbose_name='Fecha de Creación')
     carrera = models.ForeignKey(Career, on_delete=models.CASCADE, verbose_name='Carrera')
     semestre = models.ForeignKey(Semester, on_delete=models.CASCADE, verbose_name='Semestre')
     grupo = models.ForeignKey(Group, on_delete=models.CASCADE, verbose_name='Grupo')
     student = models.ForeignKey(Student, on_delete=models.CASCADE, verbose_name='Estudiante')
     evidencia_canalizacion_alumno = models.FileField(upload_to='evidencias/pdf_canalizacion', verbose_name='Evidencia pdf_canalizacion', blank=False, null=False)
     tutor = models.ForeignKey(Professor, on_delete=models.CASCADE, verbose_name='Tutor')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de Creación')
 
     def __str__(self):
         return f'Canalización del Alumno {self.student} - {self.carrera}'
@@ -40,4 +40,4 @@ class CanalizacionAlumno(models.Model):
     class Meta:
         verbose_name = 'Canalización del Alumno'
         verbose_name_plural = 'Canalizaciones de Alumnos'
-        ordering = ['-created_at']
+        ordering = ['-fecha_creacion']
