@@ -6,6 +6,7 @@ from apps.career.models import Career
 from apps.period.models import Semester
 from apps.group.models import Group
 from apps.academy.models import Professor, Student
+from apps.interview.models import InitialInterview
 from .models import ReporteTutoria, CanalizacionAlumno
 from django.http import HttpResponseForbidden
 
@@ -85,35 +86,61 @@ def mis_reportes(request):
     return render(request, 'reporte_tutorias/mis_reportes.html', {'reportes': reportes})
 
 
+@login_required
 def canalizacion_alumno(request):
+    tutor = request.user.professor
+    group = tutor.group_set.first()  # Obtener el primer grupo del tutor
+
+    if not group:
+        messages.error(request, 'No tiene ningún grupo asignado.')
+        return render(request, 'reporte_tutorias/canalizacion_alumno.html', {
+            'canalizacion': {
+                'carreras': [],
+                'semestres': [],
+                'grupos': [],
+            },
+            'default_carrera': None,
+            'default_semestre': None,
+            'default_grupo': None,
+            'students': []
+        })
+
+    carrera = group.career
+    semestre = group.semester
+
+    # Obtener los estudiantes relacionados con el grupo del tutor
+    interviews = InitialInterview.objects.filter(grupo_escolar=group)
+    students = [interview.student for interview in interviews if interview.student]
+
     if request.method == 'POST':
         carrera_id = request.POST.get('carrera')
         semestre_id = request.POST.get('semestre')
         grupo_id = request.POST.get('grupo')
-       
+        student_id = request.POST.get('student')  # Obtener el estudiante seleccionado del formulario
 
+        # Crear la instancia de CanalizacionAlumno
         canalizacion = CanalizacionAlumno(
-                carrera_id = carrera_id,
-                semestre_id = semestre_id,
-                grupo_id = grupo_id,
-                tutor = request.user.professor    
+            carrera_id=carrera_id,
+            semestre_id=semestre_id,
+            grupo_id=grupo_id,
+            student_id=student_id,  # Asignar el estudiante seleccionado
+            tutor=tutor
         )
         canalizacion.save()
 
-    else:
-        tutor = request.user.professor  
-        group = tutor.group_set.first()  # Obtener el primer grupo del tutor
-        carrera = group.career
-        semestre = group.semester
+        # Redirigir o mostrar mensaje de éxito
+        messages.success(request, 'Canalización del alumno registrada exitosamente.')
+        return redirect('nombre_de_la_vista_deseada')
 
-        context = {
-            'canalizacion': { 
-                'carreras': Career.objects.all(), 
-                'semestres': Semester.objects.all(),  
-                'grupos': Group.objects.all(),
-            },
-            'default_carrera': carrera.id,
-            'default_semestre': semestre.id,
-            'default_grupo': group.id,
-        }
-        return render(request, 'reporte_tutorias/canalizacion_alumno.html', context)
+    context = {
+        'canalizacion': {
+            'carreras': Career.objects.all(),
+            'semestres': Semester.objects.all(),
+            'grupos': Group.objects.all(),
+        },
+        'default_carrera': carrera.id,
+        'default_semestre': semestre.id,
+        'default_grupo': group.id,
+        'students': students  # Pasar los estudiantes al contexto
+    }
+    return render(request, 'reporte_tutorias/canalizacion_alumno.html', context)

@@ -92,6 +92,15 @@
                     <input type="hidden" name="grupo" value="{{ default_grupo }}">
                 </div>
                 <br>
+                <div>
+                    <label for="student">Estudiante:</label>
+                    <select id="student" name="student" required>
+                        <option value="">Seleccione un estudiante</option>
+                        {% for student in students %}
+                            <option value="{{ student.id }}">{{ student.full_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
                 <div class="evidencia-container">
                     <div class="evidencia-container">
                         <label for="evidencia4" class="file-label">Evidencia PDF del alumno canalizado:</label>
