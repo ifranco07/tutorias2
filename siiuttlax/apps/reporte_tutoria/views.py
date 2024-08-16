@@ -19,7 +19,7 @@ def reporte_tutoria(request):
     año_reporte = fecha_actual.year if fecha_actual.month > 1 else fecha_actual.year - 1
 
     # Verificar si estamos en los primeros 5 días del mes siguiente
-    if not (1 <= fecha_actual.day <= 25):
+    if not (1 <= fecha_actual.day <= 5):
         return HttpResponseForbidden("No puedes acceder a este módulo fuera del período permitido.")
 
     # Si la fecha es válida, continuar con el proceso del reporte

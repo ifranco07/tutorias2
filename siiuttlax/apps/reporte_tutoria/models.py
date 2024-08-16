@@ -35,7 +35,7 @@ class CanalizacionAlumno(models.Model):
     tutor = models.ForeignKey(Professor, on_delete=models.CASCADE, verbose_name='Tutor')
 
     def __str__(self):
-        return f'Canalización del Alumno {self.student} - {self.carrera}'
+        return f'Canalización del Alumno {self.fecha_creacion} - {self.student}'
 
     class Meta:
         verbose_name = 'Canalización del Alumno'
