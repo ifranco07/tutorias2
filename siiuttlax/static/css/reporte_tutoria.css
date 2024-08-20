@@ -163,7 +163,7 @@ body {
 /* Estilos del contenedor hoja */
 .hoja {
     width: 20cm; 
-    min-height: 15cm; 
+    min-height: 29.7cm; 
     padding: 2cm;
     background: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -175,6 +175,7 @@ body {
     align-items: center; /* Asegura que el contenido interno esté centrado horizontalmente */
     overflow: hidden;
     margin-top: 5rem; /* Espacio suficiente para separar la barra de navegación */
+    margin-bottom: 3rem;
 }
 
 /* Estilos para el header y footer */
